@@ -26,14 +26,14 @@
     /* background: #f12a43; */
     background: linear-gradient(-180deg,#f53d2d,#f63);
 }
-#head-body #logo{
-    display: block;
-    text-transform: uppercase;
-    font-family: 'Roboto Medium';
-    color: #fff;
-    padding: 13px 0px;
+
+#logo {
+    padding-top: 6px;
 }
-#head-body #search-wp{ padding: 22px 0px 22px 195px;}
+
+#head-body #search-wp{ 
+    padding: 22px 0;;
+}
 #head-body #search-wp #s{
     display: inline-block;
     width: 400px;
@@ -126,7 +126,6 @@
     top: 90px;
     right: 0;
     width: 250px;
-    min-height: 250px;
     padding: 10px;
     background: #fff;
     border: 1px solid #e1e1e1;

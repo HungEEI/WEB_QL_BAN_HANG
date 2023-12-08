@@ -19,6 +19,11 @@ p {
     font-weight: 700;
 }
 
+img {
+    width: 500px !important;
+    height: auto !important;
+}
+
 .topnav {
     padding-left: 0;
     padding: 10px 0px;
@@ -125,11 +130,11 @@ ul#sidebar-menu * {
 }
 
 .form-search {
-    width: 300px;
+    width: 420px;
 }
 
 .table {
-    width: 120%;
+    width: 100%;
 }
 
 .table-user {
@@ -140,7 +145,14 @@ ul#sidebar-menu * {
     overflow-y: scroll;
     overflow-x: scroll;
     height: fit-content;
-    max-height: 55vh;
+    max-height: 78vh;
+}
+
+.wp-table-list {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: fit-content;
+    max-height: 54vh;
 }
 
 .table thead th {
@@ -177,24 +189,29 @@ ul#sidebar-menu * {
 }
 
 #show_list_file {
-    width:  200px;
-    height: 200px; 
     overflow: hidden;
 }
 
 #result img {
-    margin: 20px 2px;
-    max-height: 100px;
+    max-width: 240px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 	height: auto;
 }
 
 #show_list_file img { 
-    max-width: 100%;
+    margin: 10px 0;
+    width: 240px;
     height: auto;
 }
 
 .img-post {
-    width: 140px;
+    max-width: 140px;
+    height: auto;
+}
+
+.img-product {
+    max-width: 100px;
     height: auto;
 }
 
@@ -207,5 +224,31 @@ p.error {
     display: flex;
 }
 
+.d-fl {
+    display: flex;
+}
 
+.d-fl  input {
+    margin-right: 6px;
+}
+
+.mg-bt {
+    margin-bottom: 10px !important;
+}
+
+.active {
+    border: 1px solid red;
+    font-weight: bold;
+    color: red;
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    z-index: 999;
+}
+
+a.a_blue {
+    color: blue;
+}
 

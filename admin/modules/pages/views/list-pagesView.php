@@ -36,8 +36,7 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                 </select>
                 <input type="submit" name="btn-search" value="Áp dụng" class="btn btn-primary">
             </div>
-            <div class="wp-table">
-                <table class="table table-user table-striped table-checkall">
+                <table class="table table-striped table-checkall">
                     <thead>
                         <tr>
                             <th scope="col">
@@ -48,8 +47,9 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                             <th scope="col">Slug</th>
                             <th scope="col">Nội dung trang</th>
                             <th scope="col">Người tạo</th>
-                            <th scope="col">Ngày tạo</th>
-                            <th scope="col">Ngày cập nhật</th>
+                            <th scope="col">Trạng thái</th>
+                            <!-- <th scope="col">Ngày tạo</th>
+                            <th scope="col">Ngày cập nhật</th> -->
                             <th scope="col">Tác vụ</th>
                         </tr>
                     </thead>
@@ -68,9 +68,20 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                                 <td><a href=""><?php echo $page['page_slug'] ?></a></td>
                                 <td><a href=""><?php echo $page['page_content'] ?></a></td>
                                 <td><a href=""><?php echo $page['fullname'] ?></a></td>
-                                <td><?php echo $page['created_at'] ?></td>                     
-                                <td><?php echo $page['updated_at'] ?></td>                     
-                                <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                <?php
+                                if($page['status'] == 'active') {
+                                    ?>
+                                    <td><span class="badge badge-success">Công khai</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-warning">Chờ duyệt</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <!-- <td><?php echo $page['created_at'] ?></td>                     
+                                <td><?php echo $page['updated_at'] ?></td>                      -->
+                                <td><a href="?mod=pages&action=update&id=<?php echo $page['page_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     <a onclick="return Del('<?php echo $page['page_title'] ?>')" href="?mod=pages&action=delete&id=<?php echo $page['page_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>  
@@ -79,7 +90,6 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                         ?>                            
                     </tbody>
                 </table>
-            </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">

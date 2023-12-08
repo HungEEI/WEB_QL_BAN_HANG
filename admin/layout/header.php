@@ -23,7 +23,7 @@
 <body>
     <div id="warpper" class="nav-fixed">
         <nav class="topnav shadow navbar-light bg-white d-flex">
-            <div class="navbar-brand"><a href="?">UNITOP ADMIN</a></div>
+            <div class="navbar-brand"><a href="?">NVH ADMIN</a></div>
             <div class="nav-right ">
                 <div class="btn-group mr-auto">
                     <button type="button" class="btn dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +41,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="?mod=users&action=new">Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="#">Thoát</a>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
                     </div>
                 </div>
             </div>

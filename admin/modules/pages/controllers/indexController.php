@@ -1,7 +1,7 @@
 <?php
 
 function construct() {
-
+    load_model('index');
 }
 
 function addAction() {
@@ -44,6 +44,32 @@ function deleteAction() {
     $id = $_GET['id'];
     db_delete("pages", "`page_id` = $id");
     redirect("?mod=pages&action=list");
+}
+
+function updateAction() {
+    $id = $_GET['id'];
+    $user_id = db_fetch_row("SELECT * FROM `users`");
+    if(isset($_POST['btn-update-page'])) {
+        $page_title = $_POST['page-title'];
+        $page_content = $_POST['page-content'];
+        $page_slug = $_POST['page-slug'];
+        $status = isset($_POST['status']) ? $_POST['status'] : 'active';
+
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data = [
+            'user_id' => $user_id['user_id'],
+            'page_title' => $page_title,
+            'page_slug' => $page_slug,
+            'page_content' => $page_content,
+            'status' => $status,
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        db_update('pages', $data, "page_id = $id");
+        load_view('list-pages');
+    }else {
+        load_view('update');
+    }
 }
 
 

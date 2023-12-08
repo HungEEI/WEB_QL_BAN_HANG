@@ -21,7 +21,7 @@ defined('APPPATH') OR exit('Không được quyền truy cập phần này');
  */
 
 
-$autoload['lib'] = array();
+$autoload['lib'] = array('email');
 
 /*
  * ------------------------------------------------------------------
@@ -32,4 +32,4 @@ $autoload['lib'] = array();
  */
 
 
-$autoload['helper'] = array('data', 'url', 'users');
+$autoload['helper'] = array('data', 'url', 'users', 'cart', 'format', 'slug_url');

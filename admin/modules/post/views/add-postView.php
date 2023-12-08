@@ -46,16 +46,21 @@ $result = data_tree($list_cat);
                         ?> 
                     </select>                 
                 </div>
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="">Trạng thái</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="status" value="active" checked>
                         <label class="form-check-label" for="exampleRadios1">
+                            Công khai
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="inactive">
+                        <label class="form-check-label" for="exampleRadios2">
                             Chờ duyệt
                         </label>
-                    </div>                               
-                </div> -->
-                <button type="submit" name="btn-add" class="btn btn-add btn-primary">Thêm mới</button>
+                    </div>
+                </div>
                 <div class="form-group clearfix">                 
                     <label for="detail">Hình ảnh</label><br>
                     <input type="file" name="file" id="file" data-uri="?mod=image&controller=upload&action=upload">
@@ -63,6 +68,7 @@ $result = data_tree($list_cat);
                     <input type ="hidden" name="image_id" id="thumbnail_url" value="" />
                     <div id="show_list_file" >
                 </div>
+                <button type="submit" name="btn-add" class="btn btn-add btn-primary">Thêm mới</button>
             </form>            
         </div>
     </div>

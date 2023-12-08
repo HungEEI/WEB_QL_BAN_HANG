@@ -3,9 +3,16 @@ get_header();
 ?>
 
 <?php 
-$list_post = db_fetch_array("SELECT posts.*, images.image_url
-FROM `posts`
-JOIN `images` ON posts.image_id = images.image_id");
+$list_post = get_all_post();
+$num_row = count(get_all_post());
+// Số lượng bản ghi trên trang
+$num_per_page = 3;
+//Tổng số bản ghi
+$total_row = $num_row;
+// Tính tổng số trang   
+$num_page = ceil($total_row / $num_per_page);
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $num_per_page;
 ?>
 
 <div id="main-content-wp" class="clearfix blog-page">
@@ -25,44 +32,37 @@ JOIN `images` ON posts.image_id = images.image_id");
         <div class="main-content fl-right">
             <div class="section" id="list-blog-wp">
                 <div class="section-head clearfix">
-                    <h3 class="section-title">Blog</h3>
+                    <h3 class="section-title">Tin tức</h3>
                 </div>
                 <div class="section-detail">
                     <ul class="list-item">
                         <?php
-                        foreach($list_post as $post) {
-                            ?>
-                            <li class="clearfix">
-                                <a href="?mod=post&action=detail" title="" class="thumb fl-left">
-                                    <img src="../admin/<?php echo $post['image_url'] ?>" alt="">
-                                </a>
-                                <div class="info fl-right">
-                                    <a href="?mod=post&action=detail" title="" class="title"><?php echo $post['post_title'] ?></a>
-                                    <span class="create-date"><?php echo $post['created_at'] ?></span>
-                                    <p class="desc"><?php echo $post['post_except'] ?></p>
-                                </div>
-                            </li>
-                            <?php
+                        for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
+                            $post = get_all_post($i); 
+                            if($post[$i]['status'] == 'active'){
+                                ?>
+                                <li class="clearfix img-radius">
+                                    <a href="<?php echo $post[$i]['url'] ?>" title="" class="thumb fl-left">
+                                        <img src="../admin/<?php echo $post[$i]['image_url'] ?>" alt="">
+                                    </a>
+                                    <div class="info fl-right">
+                                        <a href="?mod=post&controller=index&action=detail&id=<?php echo $post[$i]['post_id'] ?>" title="" class="title"><?php echo $post[$i]['post_title'] ?></a>
+                                        <span class="create-date"><?php echo $post[$i]['created_at'] ?></span>
+                                        <p class="desc"><?php echo $post[$i]['post_except'] ?></p>
+                                    </div>
+                                </li>
+                                <?php
+                            }
                         }
                         ?>
                     </ul>
                 </div>
             </div>
-            <div class="section" id="paging-wp">
-                <div class="section-detail">
-                    <ul class="list-item clearfix">
-                        <li>
-                            <a href="" title="">1</a>
-                        </li>
-                        <li>
-                            <a href="" title="">2</a>
-                        </li>
-                        <li>
-                            <a href="" title="">3</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <?php 
+            if($num_page >= 2) {
+                echo get_pagging($num_page, $page, $base_url = "?mod=post&controller=index&action=index");
+            }
+            ?>
         </div>
         <?php get_sidebar('best') ?>
     </div>

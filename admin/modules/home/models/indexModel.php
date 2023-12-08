@@ -1,11 +1,28 @@
 <?php
 
-function get_list_users() {
-    $result = db_fetch_array("SELECT * FROM `tbl_users`");
-    return $result;
+// Lấy thông tin danh sách mua hàng
+function get_list_order() {
+    $list = db_fetch_array("SELECT orders.*, customer.fullname, customer.phone
+    FROM `orders`
+    JOIN `customer` ON customer.customer_id = orders.customer_id
+    ORDER BY orders.order_id DESC
+    LIMIT 5
+    ");
+    return $list;
 }
 
-function get_user_by_id($id) {
-    $item = db_fetch_row("SELECT * FROM `tbl_users` WHERE `user_id` = {$id}");
-    return $item;
+// Lấy sản phẩm theo trạng thái
+function get_status($status = "") {
+    $list = db_fetch_array("SELECT orders.status 
+    FROM `orders`
+    WHERE orders.status = '$status'
+    ");
+
+    return $list;
+}
+
+// Lấy tổng tiền đơn hàng đã hoàn thành
+function get_total_price() {
+    $total = db_fetch_array("SELECT orders.total_amount FROM `orders` WHERE status = 'delivered'");
+    return $total;
 }

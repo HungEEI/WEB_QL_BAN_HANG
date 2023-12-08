@@ -73,7 +73,7 @@ function load($type, $name) {
 function call_function($list_function = array()) {
     if (is_array($list_function)) {
         foreach ($list_function as $f) {
-            if (function_exists($f())) {
+            if (function_exists($f)) {
                 $f();
             }
         }

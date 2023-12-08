@@ -8,9 +8,9 @@ function addAction() {
     $user_id = db_fetch_row("SELECT * FROM `users`");
     if(isset($_POST['btn-cat-pro'])) {
         $category_name = $_POST['cat-title'];      
-        $category_slug = $_POST['cat-slug'];
-        $parent_id = $_POST['cat'];
-
+        $category_slug = create_slug($_POST['cat-slug']);
+        $parent_id = isset($_POST['cat']) ? (int)$_POST['cat'] : 0;
+    
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $data = [
             'user_id' => $user_id['user_id'],

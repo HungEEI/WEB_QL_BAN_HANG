@@ -17,11 +17,7 @@ $result = data_tree($list_cat);
         <div class="card-body">
             <form id="upload_multi" action="" enctype="multipart/form-data" method="POST">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="name">Mã sản phẩm</label>
-                            <input class="form-control" type="text" name="product-code" id="name">
-                        </div>
+                    <div class="col-6">                    
                         <div class="form-group">
                             <label for="name">Tên sản phẩm</label>
                             <input class="form-control" type="text" name="product-name" id="name">
@@ -30,57 +26,66 @@ $result = data_tree($list_cat);
                             <label for="name">Slug</label>
                             <input class="form-control" type="text" name="product-slug" id="name">
                         </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="name">Số lượng kho</label>
+                            <input class="form-control" type="number" name="product-qty" id="name">
+                        </div>
                         <div class="form-group">
                             <label for="name">Giá</label>
-                            <input class="form-control" type="text" name="product-price" id="name">
+                            <input class="form-control" type="number" name="product-price" id="name">
                         </div>
                         <div class="form-group">
                             <label for="name">Giá khuyến mại</label>
-                            <input class="form-control" type="text" name="product-discount" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Danh mục</label>
-                            <select class="form-control" id="" name="sl-cat">
-                                <option>Chọn danh mục</option>  
-                                <?php
-                                foreach($result as $cat) {
-                                    ?>
-                                    <option value="<?php echo $cat['product_category_id'] ?>"><?php echo str_repeat('|--- ', $cat['level']).$cat['category_name'] ?></option>                              
-                                    <?php
-                                }
-                                ?> 
-                            </select>
-                        </div>
-                    </div>                  
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="intro">Mô tả sản phẩm</label>
-                            <textarea name="product-desc" class="ckeditor" id="content"></textarea>
-                        </div>
+                            <input class="form-control" type="number" name="product-discount" id="name">
+                        </div>                     
+                    </div>                
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="intro">Mô tả sản phẩm</label>
+                        <textarea name="product-desc" class="ckeditor" id="content"></textarea>
+                    </div>
+    
+                    <div class="form-group col-6">
+                        <label for="intro">Chi tiết sản phẩm</label>
+                        <textarea name="product-detail" class="ckeditor" id="content"></textarea>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="intro">Chi tiết sản phẩm</label>
-                    <textarea name="product-detail" class="ckeditor" id="content"></textarea>
+                    <label for="">Danh mục</label>
+                    <select class="form-control" name="sl-cat">
+                        <option>Chọn danh mục</option>  
+                        <?php
+                        foreach($result as $cat) {
+                            ?>
+                            <option value="<?php echo $cat['product_category_id'] ?>"><?php echo str_repeat('|--- ', $cat['level']).$cat['category_name'] ?></option>                              
+                            <?php
+                        }
+                        ?> 
+                    </select>
                 </div>
-           
-                <!-- <div class="form-group">
+                <div class="form-group d-fl">
+                    <input type="checkbox" name="is-featured">
+                    <label for="is-featured">Sản phẩm nổi bật</label>
+                </div>         
+                <div class="form-group">
                     <label for="">Trạng thái</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="status" value="active" checked>
                         <label class="form-check-label" for="exampleRadios1">
-                            Còn hàng
+                            Công khai
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="status" value="inactive">
                         <label class="form-check-label" for="exampleRadios2">
-                            Hết hàng
+                            Chờ duyệt
                         </label>
                     </div>
-                </div> -->
-                <div class="form-group clearfix"> 
+                </div>
+                <div class="form-group mg-bt clearfix"> 
                     <label for="detail">Hình ảnh</label><br>
                     <input type="file" name="images[]" id="file" multiple="" data-uri="?mod=image&controller=upload&action=multiUpload">
                     <input type="submit" id="upload_multi_bt" name="bt_upload" value="Uploads">    

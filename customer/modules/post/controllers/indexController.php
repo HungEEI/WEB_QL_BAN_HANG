@@ -1,7 +1,8 @@
 <?php
 
 function construct() {
-
+    load_model('index');
+    load('helper', 'pagging');
 }
 
 function indexAction() {
@@ -9,6 +10,7 @@ function indexAction() {
 }
 
 function detailAction() {
+    $id = $_GET['id'];
     load_view('detail');
 }
 

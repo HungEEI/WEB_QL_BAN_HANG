@@ -9,7 +9,7 @@ function addAction() {
     if(isset($_POST['btn-add-cat'])) {
         $category_name = $_POST['cat-title'];      
         $category_slug = $_POST['cat-slug'];
-        $parent_id = $_POST['cat'];
+        $parent_id = isset($_POST['parent_id']) ? (int)$_POST['parent_id'] : 0;
 
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $data = [

@@ -6,11 +6,17 @@ get_sidebar();
 ?>
 
 <?php
-$list_post = db_fetch_array("SELECT posts.*, users.fullname, images.image_url, post_categories.category_name
-FROM `posts`
-INNER JOIN `users` ON posts.user_id = users.user_id
-INNER JOIN `images` ON posts.image_id = images.image_id
-INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_category_id");
+$list_post = get_info_list_post();
+
+$num_row = count($list_post);
+// Số lượng bản ghi trên trang
+$num_per_page = 2;
+//Tổng số bản ghi
+$total_row = $num_row;
+// Tính tổng số trang   
+$num_page = ceil($total_row / $num_per_page);
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $num_per_page;
 ?>
 <div id="wp-content" class="container-fluid">
     <div class="card">
@@ -37,8 +43,7 @@ INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_ca
                 </select>
                 <input type="submit" name="btn-search" value="Áp dụng" class="btn btn-primary">
             </div>
-            <div class="wp-table">
-                <table class="table table-user table-striped table-checkall">
+                <table class="table table-striped table-checkall">
                     <thead>
                         <tr>
                             <th scope="col">
@@ -51,34 +56,44 @@ INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_ca
                             <th scope="col">Danh mục</th>
                             <th scope="col">Mô tả ngắn</th>
                             <th scope="col">Nội dung</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Người tạo</th>
-                            <th scope="col">Ngày tạo</th>
+                            <!-- <th scope="col">Ngày tạo</th> -->
                             <th scope="col">Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $temp = 0;
-                        foreach($list_post as $post) {
+                        for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
+                            $post = get_info_list_post($i); 
                             $temp++;
                             ?>         
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td scope="row"><?php echo $temp ?></td>
-                                <td><img class="img-post" src="<?php echo $post['image_url'] ?>" alt=""></td>
-                                <td><a href=""><?php echo $post['post_title'] ?></a></td>
-                                <td><?php echo $post['post_slug'] ?></td>
-                                <td><?php echo $post['category_name'] ?></td>
-                                <td><?php echo $post['post_except'] ?></td>
-                                <td><?php echo $post['post_content'] ?></td>
-                                <td><?php echo $post['fullname'] ?></td></td>
-                                <td><?php echo $post['created_at'] ?></td>
+                                <td><img class="img-post" src="<?php echo $post[$i]['image_url'] ?>" alt=""></td>
+                                <td><a href=""><?php echo $post[$i]['post_title'] ?></a></td>
+                                <td><?php echo $post[$i]['post_slug'] ?></td>
+                                <td><?php echo $post[$i]['category_name'] ?></td>
+                                <td><?php echo $post[$i]['post_except'] ?></td>
+                                <td><?php echo $post[$i]['post_content'] ?></td>
+                                <td><?php echo $post[$i]['fullname'] ?></td></td>
+                                <?php
+                                if($post[$i]['status'] == 'active') {
+                                    ?>
+                                    <td><span class="badge badge-success">Công khai</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-warning">Chờ duyệt</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <!-- <td><?php echo $post[$i]['created_at'] ?></td> -->
                                 <td>
-                                    <a href="?mod=post&action=delete&id=<?php echo $page['post_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" 
-                                    data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a onclick="return Del('<?php echo $post['post_title'] ?>')" href="?mod=post&action=delete&id=<?php echo $post['post_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button"
+                                    <a href="?mod=post&controller=index&action=update&id=<?php echo $post[$i]['post_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a onclick="return Del('<?php echo $post[$i]['post_title'] ?>')" href="?mod=post&controller=index&action=delete&id=<?php echo $post[$i]['post_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button"
                                     data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="fa fa-trash"></i>
                                     </a>
@@ -89,26 +104,11 @@ INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_ca
                         ?>                       
                     </tbody>
                 </table>
-            </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">Trước</span>
-                            <span class="sr-only">Sau</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <?php
+            if($num_page >= 2) {
+                echo get_pugging($num_page, $page, $base_url = "?mod=post&controller=index&action=list");
+            }
+            ?>
         </div>
     </div>
 </div>

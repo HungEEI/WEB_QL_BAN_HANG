@@ -1,11 +1,23 @@
 <?php
 
-function get_list_users() {
-    $result = db_fetch_array("SELECT * FROM `tbl_users`");
-    return $result;
+// Lấy tất cả post
+function get_all_post() {
+    $list_post = db_fetch_array("SELECT posts.*, images.image_url
+    FROM `posts`
+    JOIN `images` ON posts.image_id = images.image_id
+    WHERE posts.status = 'active'
+    ");
+    foreach ($list_post as &$p) {
+        $slug = create_slug($p['post_slug']);
+        $p['url'] = "tin-tuc/chi-tiet/{$p['post_id']}-{$slug}.html";
+    }
+    return $list_post;
 }
 
-function get_user_by_id($id) {
-    $item = db_fetch_row("SELECT * FROM `tbl_users` WHERE `user_id` = {$id}");
-    return $item;
+// Lấy detail post theo id
+function get_detail_post_by_id() {
+    $id = $_GET['id'];
+    $detail = db_fetch_row("SELECT * FROM `posts` WHERE post_id = $id");
+    return $detail;
 }
+

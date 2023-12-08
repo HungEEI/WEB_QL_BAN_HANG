@@ -32,4 +32,4 @@ $autoload['lib'] = array();
  */
 
 
-$autoload['helper'] = array('data', 'url', 'users');
+$autoload['helper'] = array('data', 'url', 'users', 'slug_url');

@@ -6,14 +6,11 @@ get_sidebar();
 ?>
 
 <?php
-// $list_cat = db_fetch_array("SELECT post_categories.*, users.fullname
-// FROM `post_categories` INNER JOIN `users` ON post_categories.user_id = users.user_id");
-$list_cat = db_fetch_array("SELECT post_categories.*, users.fullname, 
-(SELECT category_name FROM post_categories AS parent 
-WHERE parent.post_category_id = post_categories.parent_id) AS parent_name
-FROM post_categories AS post_categories
-INNER JOIN users AS users ON post_categories.user_id = users.user_id;
-");
+$list_cat = db_fetch_array("SELECT post_categories.*, users.fullname, post_categories.category_name, post_categories.category_slug
+FROM post_categories 
+INNER JOIN users ON post_categories.user_id = users.user_id;");
+
+$result = data_tree($list_cat);
 ?>
 
 <div id="wp-content" class="container-fluid">
@@ -35,10 +32,9 @@ INNER JOIN users AS users ON post_categories.user_id = users.user_id;
                         </div>
                         <div class="form-group">
                             <label for="">Danh mục cha</label>
-                            <select name="cat" class="form-control" id="parent_id">
+                            <select name="parent_id" class="form-control">
                                 <option>Chọn danh mục</option>
                                 <?php
-                                $result = data_tree($list_cat);
                                 foreach($result as $cat) {
                                     if($cat['post_category_id']) {
                                         ?>                             
@@ -82,7 +78,6 @@ INNER JOIN users AS users ON post_categories.user_id = users.user_id;
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên danh mục</th>
-                                    <th scope="col">Danh mục cha</th>
                                     <th scope="col">Người tạo</th>
                                     <th scope="col">Slug</th>
                                     <th scope="col">Tác vụ</th>
@@ -96,24 +91,16 @@ INNER JOIN users AS users ON post_categories.user_id = users.user_id;
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $temp ?></th>
-                                        <td><?php echo $cat['category_name'] ?></td>
                                         <td>
                                             <?php 
-                                            if($cat['level'] == 0) {
-                                                ?>                             
-                                                <option value="<?php echo $cat['post_category_id'] ?>"><?php echo "--- --- ---" ?></option>
-                                                <?php
-                                            } else {
-                                                ?>                             
-                                                <option value="<?php echo $cat['post_category_id'] ?>"><?php echo str_repeat('|--- ', $cat['level']).$cat['parent_name'] ?></option>
-                                                <?php
-                                            }
+                                            echo str_repeat('|--- ',$cat['level']).$cat['category_name']
                                             ?>
                                         </td>
                                         <td><?php echo $cat['fullname'] ?></td>
                                         <td><?php echo $cat['category_slug'] ?></td>  
                                         <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                                        <a onclick="return Del('<?php echo $cat['category_name'] ?>')" href="?mod=post&controller=cat&action=delete&id=<?php echo $cat['post_category_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                        <a onclick="return Del('<?php echo $cat['category_name'] ?>')" href="?mod=post&controller=cat&action=delete&id=<?php echo $cat['post_category_id'] ?>" 
+                                        class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php

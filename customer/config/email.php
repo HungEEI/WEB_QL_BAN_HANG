@@ -21,9 +21,9 @@
 $config['email'] = array(
     'protocol' => 'smtp',
     'smtp_host' => 'smtp.googlemail.com',
-    'smtp_fullname' => 'Nguyễn Văn Hùng',
+    'smtp_fullname' => 'ISMART',
     'smtp_user' => 'vanhung11501@gmail.com',
-    'smtp_pass' => 'gigv xksk bjgq nvqo',
+    'smtp_pass' => 'aano nrgm katl spkb',
     'smtp_port' => 587,
     'smtp_secure' => 'tls',
     'smtp_timeout' => '7',

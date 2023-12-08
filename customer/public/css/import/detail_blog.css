@@ -38,10 +38,15 @@ DETAIL BLOG
     text-align: justify;
 }
 #detail-blog-wp .detail p strong{ font-family: 'Roboto Medium'; font-weight: normal; color: #333;}
+#detail-blog-wp p {
+    font-size: 16px;
+}
 #detail-blog-wp .detail p img{
     margin: 5px 0px;
     border: 1px solid #D2D2D2;
     display: inline-block;
+    width: 700px !important;
+    height: auto !important;
 }
 #list-related-wp .item-wp{ padding: 0px 10px;}
 #list-related-wp .item-wp .info a{
@@ -84,3 +89,84 @@ DETAIL BLOG
     content: '\f105';
 }
 #list-related-wp{ padding-top: 50px;}
+h3.text-center {
+    text-align: center;
+    font-size: 26px !important;
+}
+#detail-blog-wp h3.section_title::before {
+    position: absolute;
+    content: '';
+    bottom: -1px;
+    width: 100px;
+    height: 2px;
+    background: #bf2424;
+    left: 0px;
+}
+h3.section_title {
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: normal;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    flex-basis: 30%;
+}
+h3.section_title::before {
+    position: absolute;
+    content: '';
+    bottom: -1px;
+    width: 100px;
+    height: 2px;
+    background: #bf2424;
+    left: 0px;
+}
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+#detail-blog-wp ul.list-item p {
+    color: #555;
+    line-height: 28px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+#info-shop {
+    padding: 10px 0 20px 0;
+}
+li.img-radius img {
+    border-radius: 8px;
+}
+form.customer-service {
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+    max-width: 600px;
+    margin: 0px auto;
+}
+form.customer-service label {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    padding: 8px 0px;
+    text-transform: uppercase;
+}
+form.customer-service input, textarea {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid #E3DDBB;
+    background: none;
+    font-size: 16px;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+form.customer-service input#submit {
+    background: rgb(241, 42, 67);
+    color: white;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 10px 0px;
+}

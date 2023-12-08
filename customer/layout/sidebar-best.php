@@ -1,3 +1,36 @@
+
+<?php 
+# Lấy thông tin ảnh
+function get_info_product_img($product_id) {
+    $list_img = db_fetch_array("SELECT product_images.*, images.image_url
+    FROM `product_images`  
+    JOIN `images` ON product_images.image_id = images.image_id
+    WHERE product_images.product_id = $product_id
+    ORDER BY product_images.pin DESC
+    ");
+
+    return $list_img;
+}
+
+# Lấy thông tin danh sách sản phẩm
+function get_info_list_product() {
+    $list_product = db_fetch_array("SELECT products.product_id, products.product_name, products.product_price, products.product_discount
+    FROM `products`
+    ");
+
+    $product_thumb = array();
+    foreach ($list_product as $product) {
+        $list_img = get_info_product_img($product['product_id']);
+        $image_urls = array();      
+        foreach ($list_img as $img) {
+            $image_urls[] = $img['image_url'];
+        }     
+        $product['thumb'] = $image_urls;
+        $product_thumb[] = $product;
+    }
+    return $product_thumb;
+}
+?>
 <div class="sidebar fl-left">
             <div class="section" id="selling-wp">
                 <div class="section-head">
@@ -5,110 +38,25 @@
                 </div>
                 <div class="section-detail">
                     <ul class="list-item">
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-13.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Laptop Asus A540UP I5</a>
-                                <div class="price">
-                                    <span class="new">5.190.000đ</span>
-                                    <span class="old">7.190.000đ</span>
+                        <?php 
+                        foreach(get_info_list_product() as $pin) {
+                            ?>
+                            <li class="clearfix">
+                                <a href="?page=detail_product" title="" class="thumb fl-left">
+                                    <img src="../admin/<?php echo $pin['thumb'][0] ?>" alt="">
+                                </a>
+                                <div class="info fl-right">
+                                    <a href="?page=detail_product" title="" class="product-name"><?php echo $pin['product_name'] ?></a>
+                                    <div class="price">
+                                        <span class="new"><?php echo currency_format($pin['product_price']) ?></span>
+                                        <span class="old"><?php echo currency_format($pin['product_discount']) ?></span>
+                                    </div>
+                                    <a href="" title="" class="buy-now">Mua ngay</a>
                                 </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-11.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-12.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-05.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-22.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-23.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-18.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <a href="?page=detail_product" title="" class="thumb fl-left">
-                                <img src="public/images/img-pro-15.png" alt="">
-                            </a>
-                            <div class="info fl-right">
-                                <a href="?page=detail_product" title="" class="product-name">Iphone X Plus</a>
-                                <div class="price">
-                                    <span class="new">15.190.000đ</span>
-                                    <span class="old">17.190.000đ</span>
-                                </div>
-                                <a href="" title="" class="buy-now">Mua ngay</a>
-                            </div>
-                        </li>
+                            </li>
+                            <?php
+                        }
+                        ?>                    
                     </ul>
                 </div>
             </div>

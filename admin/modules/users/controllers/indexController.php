@@ -5,6 +5,7 @@ function construct()
     load_model('index');
     load('lib', 'validation');
     load('lib', 'email');
+    load('helper', 'pagging');
 }
 
 function listAction() {

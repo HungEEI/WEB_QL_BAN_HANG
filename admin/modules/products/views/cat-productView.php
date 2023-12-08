@@ -5,12 +5,10 @@ get_header();
 get_sidebar();
 ?>
 <?php
-$list_cat = db_fetch_array("SELECT product_categories.*, users.fullname, 
-(SELECT category_name FROM product_categories AS parent 
-WHERE parent.product_category_id = product_categories.parent_id) AS parent_name
-FROM product_categories AS product_categories
-INNER JOIN users AS users ON product_categories.user_id = users.user_id;
-");
+$list_cat = db_fetch_array("SELECT product_categories.*, users.fullname, product_categories.category_name, product_categories.category_slug
+FROM product_categories 
+INNER JOIN users ON product_categories.user_id = users.user_id;");
+
 ?>
 <div id="wp-content" class="container-fluid">
     <div class="row">
@@ -29,6 +27,25 @@ INNER JOIN users AS users ON product_categories.user_id = users.user_id;
                             <label for="name">Slug</label>
                             <input class="form-control" type="text" name="cat-slug" id="name">
                         </div>
+                        <!-- <div class="form-group">
+                            <label for="">Trạng thái</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" value="active">
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Hiện ra trang chủ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" value="inactive">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Ẩn ở trang chủ
+                                </label>
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group">
+                            <label for="name">Thứ tự</label>
+                            <input class="form-control" type="number" name="cat-position" id="name">
+                        </div> -->
                         <div class="form-group">
                             <label for="">Danh mục cha</label>
                             <select name="cat" class="form-control" id="">
@@ -77,9 +94,9 @@ INNER JOIN users AS users ON product_categories.user_id = users.user_id;
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Tên danh mục</th>
-                                    <th scope="col">Danh mục cha</th>
-                                    <th scope="col">Người tạo</th>
                                     <th scope="col">Slug</th>
+                                    <!-- <th scope="col">Thứ tự</th> -->
+                                    <th scope="col">Người tạo</th>
                                     <th scope="col">Tác vụ</th>
                                 </tr>
                             </thead>
@@ -91,22 +108,13 @@ INNER JOIN users AS users ON product_categories.user_id = users.user_id;
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $temp ?></th>
-                                        <td><?php echo $cat['category_name'] ?></td>
                                         <td>
                                             <?php 
-                                            if($cat['level'] == 0) {
-                                                ?>                             
-                                                <option value="<?php echo $cat['product_category_id'] ?>"><?php echo "--- --- ---" ?></option>
-                                                <?php
-                                            } else {
-                                                ?>                             
-                                                <option value="<?php echo $cat['product_category_id'] ?>"><?php echo str_repeat('|--- ', $cat['level']).$cat['parent_name'] ?></option>
-                                                <?php
-                                            }
+                                            echo str_repeat('|--- ',$cat['level']).$cat['category_name']
                                             ?>
                                         </td>
-                                        <td><?php echo $cat['fullname'] ?></td>
                                         <td><?php echo $cat['category_slug'] ?></td>  
+                                        <td><?php echo $cat['fullname'] ?></td>
                                         <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
                                         <a onclick="return Del('<?php echo $cat['category_name'] ?>')" href="?mod=products&controller=cat&action=delete&id=<?php echo $cat['product_category_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                         </td>

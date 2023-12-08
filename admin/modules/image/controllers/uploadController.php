@@ -9,7 +9,7 @@ function uploadAction() {
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //Bước 1: Tạo thư mục lưu file
         $error = array();
-        $target_dir = "public/uploads/posts/";
+        $target_dir = "public/uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0755, true);
         }
@@ -62,7 +62,7 @@ function multiUploadAction() {
         $error = array();
         // Số lượng ảnh upload 
 	    $num_images = count($_FILES['file']['name']);
-        $target_dir = "public/uploads/products/";
+        $target_dir = "public/uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0755, true);
         }

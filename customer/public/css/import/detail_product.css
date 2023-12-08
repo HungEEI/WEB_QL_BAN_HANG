@@ -7,7 +7,12 @@
 }
 #detail-product-wp .section-detail, #post-product-wp .section-detail{background: #fff; padding: 15px;}
 #main-thumb .zoomWrapper img, #detail-product-wp .owl-carousel .owl-item a img{ border: 1px solid #d9d9d9;}
-#list-thumb{ margin-top: 25px;}
+
+img#zoom {
+    width: 357px;
+    height: auto;
+}
+#list-thumb{ margin-top: 28px;}
 #detail-product-wp .owl-carousel .owl-item{ padding: 0px 4px;}
 #detail-product-wp .owl-carousel .owl-item a{ display: block; }
 #detail-product-wp .owl-controls{ position: relative;}

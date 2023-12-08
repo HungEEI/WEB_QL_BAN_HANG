@@ -70,11 +70,11 @@ function load($type, $name) {
  * Gọi đến hàm theo tham số biến
  */
 
-function call_function($list_function = array()) {
+ function call_function($list_function = array()) {
     if (is_array($list_function)) {
         foreach ($list_function as $f) {
-            if (function_exists($f())) {
-                $f();
+            if (function_exists($f)) {
+                $f(); // Gọi hàm nếu tồn tại
             }
         }
     }
