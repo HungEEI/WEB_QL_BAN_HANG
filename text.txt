@@ -20,7 +20,7 @@ iPhone 15 Pro Max đem lại một diện mạo hoàn toàn mới và sở hữu
 Hiệu năng mạnh mẽ cùng chipset A17 Pro tiên tiến 
 Sản phẩm trang bị chip A17 Pro được sản xuất trên tiến trình 3nm, mang lại bước cải tiến đột phá. Nhờ những cải tiến về thiết kế và kiến trúc vi mô, CPU mới nhanh hơn đến 10%, hỗ trợ tính năng như Giọng nói cá nhân hay tự động sửa lỗi chuyên nghiệp. Không chỉ vậy, GPU nhanh hơn đến 20% với thiết kế 6 lõi mới nhằm nâng cao hiệu suất và tiết kiệm năng lượng.
 
-hello
+
 
 <div id="main-content-wp" class="clearfix detail-product-page">
     <div class="wp-inner">
