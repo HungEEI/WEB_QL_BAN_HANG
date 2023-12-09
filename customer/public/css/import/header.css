@@ -20,6 +20,7 @@
     display: block;
     color: #fff;
     padding: 10px 15px;
+    font-size: 16px;
 }
 #head-top #main-menu li:last-child a{ padding-right: 0!important;}
 #head-body{ 

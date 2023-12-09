@@ -8,7 +8,7 @@ DETAIL BLOG
     font-weight: normal;
     line-height: normal;
     font-family: "Roboto Regular";
-    padding-bottom: 10px;
+    padding: 10px 0;
 }
 #detail-blog-wp .create-date{
     position: relative;
@@ -132,7 +132,7 @@ h3.section_title::before {
     text-align: justify;
 }
 #info-shop {
-    padding: 10px 0 20px 0;
+    padding: 44px 0 20px 0;
 }
 li.img-radius img {
     border-radius: 8px;
