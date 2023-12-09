@@ -1,6 +1,5 @@
 <?php
 $list_cat = db_fetch_array("SELECT * FROM `product_categories`");
-load('helper', 'menurespon');
 ?>
 
 <div id="menu-respon">

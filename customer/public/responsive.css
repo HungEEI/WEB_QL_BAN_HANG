@@ -128,6 +128,9 @@
     #head-body #search-wp #s {
         width: 216px;
     }
+    #main-content-wp {
+        padding: 25px 10px 75px 10px;
+    }
 }
 
 @media screen and (max-width: 800px){
@@ -344,6 +347,9 @@
     .section_flash_sale .titlecate h2 a {
         font-size: 16px !important;
     }
+    #same-category-wp .list-item li .action .buy-now {
+        margin-right: 36px !important;
+    }
 }
 
 @media screen and (max-width: 438px){
@@ -358,7 +364,11 @@
     #list-product-wp .section-detail .list-item li.col-4{ width: 92%; margin-right: 2%; margin-bottom: 4%;}
     #support-wp .section-detail .list-item li:before{ display: none; }
     .home-page #main-content-wp{ padding-top: 0;}
-    #main-content-wp{ padding-bottom: 50px;}
+    #main-content-wp{ 
+        padding-bottom: 50px; 
+        padding-right: 10px;
+        padding-left: 10px;
+    }
     #feature-product-wp .list-item li .action a, #list-product-wp .list-item li .action a, #same-category-wp .list-item li .action a{ padding: 2px 5px;}
     #feature-product-wp .list-item li .price, #list-product-wp .list-item li .price, #same-category-wp .list-item li .price{ font-size: 12px!important;}
     #feature-product-wp .list-item li .product-name, #list-product-wp .list-item li .product-name, #same-category-wp .list-item li .product-name{
@@ -435,6 +445,30 @@
     .section_flash_sale .titlecate {
         margin-right: 20px;
     }
+    .thumb-wp {
+        display: block;
+    }
+    #detail-product-wp .thumb-wp, #detail-product-wp .thumb-respon-wp {
+        margin-left: 54px;
+        width: 70%;
+    }
+    #list-thumb {
+       display: none !important;
+    }
+    #detail-product-wp .info .product-name {
+        margin-top: 5px;
+        font-size: 26px;
+        text-align: center;
+    }
+    #detail-product-wp .info .desc {
+        display: none;
+    }
+    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart {
+        display: none;
+    }
+    #same-category-wp .list-item li .action .buy-now {
+        margin-right: 25px !important;
+    }
 }
 
 @media screen and (max-width: 397px){
@@ -491,6 +525,12 @@
     
     .section_flash_sale .titlecate h2 a img {
         width: 19px !important;
+    }
+    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart {
+        display: block;
+    }
+    .section_flash_sale .titlecate h2 a {
+        font-size: 14px !important;
     }
 }
 

@@ -297,7 +297,9 @@ $info_sliders = get_info_sliders();
         </div>
     </div>
 </div>
-
+<?php
+get_footer();
+?>
 <script>
     function updateCountdown() {
         var countDownDate = new Date();
@@ -324,7 +326,3 @@ $info_sliders = get_info_sliders();
     updateCountdown();
 </script>
 
-
-<?php
-get_footer();
-?>

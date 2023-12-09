@@ -20,7 +20,7 @@ p {
 }
 
 img {
-    width: 406px !important;
+    width: 360px !important;
     height: auto !important;
 }
 
@@ -157,7 +157,6 @@ ul#sidebar-menu * {
 
 .table thead th {
     background: #f3c5c5;
-    top: -0.05px;
     position: sticky;
 }
 

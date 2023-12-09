@@ -32,4 +32,4 @@ $autoload['lib'] = array('email');
  */
 
 
-$autoload['helper'] = array('data', 'url', 'menu', 'cart', 'format', 'slug_url');
+$autoload['helper'] = array('data', 'url', 'menu', 'menurespon', 'cart', 'format', 'slug_url');
