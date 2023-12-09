@@ -60,7 +60,7 @@ $current_page_products = array_slice(get_all_products_category_id(), $start, $nu
                                 $temp++;
                                 ?>
                                 <li class="col-4">
-                                    <a class="thumb-70" href="?mod=products&controller=index&action=detail&id=<?php echo $product['product_id'] ?>" title="" class="thumb">
+                                    <a class="thumb-70" href="<?php echo $product['url'] ?>" title="" class="thumb">
                                         <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                     </a>
                                     <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
@@ -69,8 +69,8 @@ $current_page_products = array_slice(get_all_products_category_id(), $start, $nu
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="?mod=cart&controller=index&action=add&id=<?php echo $product['product_id'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                        <a href="?mod=cart&controller=checkout&action=add&id=<?php echo $product['product_id'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                        <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>              
                                 <?php

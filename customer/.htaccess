@@ -18,7 +18,9 @@ RewriteRule ^danh-muc/([0-9]+)-([a-zA-Z0-9_-]+).html$ ?mod=products&controller=i
 RewriteRule ^tin-tuc/chi-tiet/([0-9]+)-([a-zA-Z0-9_-]+).html$ ?mod=post&controller=index&action=detail&id=$1&name=$2
 # CART
 RewriteRule ^gio-hang/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=index&action=index
-RewriteRule ^don-hang/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=checkout&action=index
+RewriteRule ^thanh-toan/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=checkout&action=index
+RewriteRule ^don-mua/([0-9]+)-thanh-toan.html$ ?mod=cart&controller=checkout&action=add&id=$1
+RewriteRule ^gio-hang-([0-9]+)/don-mua.html$ ?mod=cart&controller=index&action=index&id=$1
 
 
 # RewriteRule ^add/([a-zA-Z0-9_-]+).html$ index.php?mod=cart&action=cart

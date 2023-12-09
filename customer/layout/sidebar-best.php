@@ -17,6 +17,9 @@ function get_info_list_product() {
     $list_product = db_fetch_array("SELECT products.product_id, products.product_name, products.product_price, products.product_discount
     FROM `products`
     ");
+    foreach ($list_product as &$p) {
+        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";
+    }
 
     $product_thumb = array();
     foreach ($list_product as $product) {
@@ -39,7 +42,8 @@ function get_info_list_product() {
                 <div class="section-detail">
                     <ul class="list-item">
                         <?php 
-                        foreach(get_info_list_product() as $pin) {
+                        $list = get_info_list_product();
+                        foreach($list as $pin) {
                             ?>
                             <li class="clearfix">
                                 <a href="?page=detail_product" title="" class="thumb fl-left">
@@ -50,8 +54,8 @@ function get_info_list_product() {
                                     <div class="price">
                                         <span class="new"><?php echo currency_format($pin['product_price']) ?></span>
                                         <span class="old"><?php echo currency_format($pin['product_discount']) ?></span>
-                                    </div>
-                                    <a href="" title="" class="buy-now">Mua ngay</a>
+                                    </div>                             
+                                    <a href="<?php echo $pin['url_checkout'] ?>" title="" class="buy-now">Mua ngay</a>
                                 </div>
                             </li>
                             <?php

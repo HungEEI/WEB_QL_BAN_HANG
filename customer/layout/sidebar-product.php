@@ -1,6 +1,9 @@
 <?php
 $list_cat = db_fetch_array("SELECT * FROM `product_categories`");
-load('helper', 'menu');
+foreach ($list_cat as &$p) {
+    $slug = create_slug($p['category_slug']);
+    $p['url_cat'] = "danh-muc/{$p['product_category_id']}-{$slug}.html";
+}
 ?>
 
 <div class="sidebar fl-left">

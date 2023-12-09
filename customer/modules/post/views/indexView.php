@@ -46,7 +46,7 @@ $start = ($page - 1) * $num_per_page;
                                         <img src="../admin/<?php echo $post[$i]['image_url'] ?>" alt="">
                                     </a>
                                     <div class="info fl-right">
-                                        <a href="?mod=post&controller=index&action=detail&id=<?php echo $post[$i]['post_id'] ?>" title="" class="title"><?php echo $post[$i]['post_title'] ?></a>
+                                        <a href="<?php echo $post[$i]['url'] ?>" title="" class="title"><?php echo $post[$i]['post_title'] ?></a>
                                         <span class="create-date"><?php echo $post[$i]['created_at'] ?></span>
                                         <p class="desc"><?php echo $post[$i]['post_except'] ?></p>
                                     </div>

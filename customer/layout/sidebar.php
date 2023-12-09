@@ -4,7 +4,6 @@ foreach ($list_cat as &$p) {
     $slug = create_slug($p['category_slug']);
     $p['url_cat'] = "danh-muc/{$p['product_category_id']}-{$slug}.html";
 }
-load('helper', 'menu')
 ?>
 
 <div class="sidebar fl-left">

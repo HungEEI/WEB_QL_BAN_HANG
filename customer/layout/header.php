@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="action-cart clearfix">
                                                 <a href="gio-hang/danh-sach.html" title="Giỏ hàng" class="view-cart fl-left">Giỏ hàng</a>
-                                                <a href="don-hang/thanh-toan.html" title="Thanh toán" class="checkout fl-right">Thanh toán</a>
+                                                <a href="thanh-toan/don-mua.html" title="Thanh toán" class="checkout fl-right">Thanh toán</a>
                                             </div>
                                         </div>
                                     </div>

@@ -41,7 +41,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="?mod=users&action=new">Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="?mod=users&action=logout">Đăng xuất</a>
                     </div>
                 </div>
             </div>

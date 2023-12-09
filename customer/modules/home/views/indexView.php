@@ -115,7 +115,7 @@ $info_sliders = get_info_sliders();
                                             </div>
                                             <div class="action clearfix">
                                                 <!-- <a href="?mod=cart&controller=index&action=add&id=<?php echo $product['product_id'] ?>" title="" class="add-cart fl-left mg-l">Thêm giỏ hàng</a> -->
-                                                <a href="?mod=cart&controller=checkout&action=add&id=<?php echo $product['product_id'] ?>" title="" class="buy-now buy-now-2 product-sale">Mua ngay</a>
+                                                <a href="<?php echo $product['url_checkout'] ?>" title="" class="buy-now buy-now-2 product-sale">Mua ngay</a>
                                             </div>
                                         </li>
                                         <?php
@@ -159,8 +159,8 @@ $info_sliders = get_info_sliders();
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                        <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                        <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>                       
                                 <?php
@@ -203,7 +203,7 @@ $info_sliders = get_info_sliders();
                                     </div>
                                     <div class="action clearfix">
                                         <a href="?mod=order&controller=index&action=index" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                        <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                        <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>                       
                                 <?php
@@ -243,8 +243,8 @@ $info_sliders = get_info_sliders();
                                     <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                 </div>
                                 <div class="action clearfix">
-                                    <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                    <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                    <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                 </div>
                             </li>                       
                             <?php
@@ -284,8 +284,8 @@ $info_sliders = get_info_sliders();
                                     <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                 </div>
                                 <div class="action clearfix">
-                                    <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="?page=checkout" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                    <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                    <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                 </div>
                             </li>                       
                             <?php

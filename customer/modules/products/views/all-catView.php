@@ -70,7 +70,7 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                                     </div>
                                     <div class="action clearfix">
                                         <a href="?mod=cart&controller=index&action=add&id=<?php echo $product['product_id'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                        <a href="?mod=cart&controller=checkout&action=add&id=<?php echo $product['product_id'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                        <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>              
                                 <?php

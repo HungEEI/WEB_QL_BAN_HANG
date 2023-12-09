@@ -17,6 +17,12 @@ function get_all_products() {
     FROM `products`
     JOIN `product_categories` ON products.product_category_id = product_categories.product_category_id
     ");
+    foreach ( $list_product as &$p) {
+        $slug = create_slug($p['product_slug']);
+        $p['url'] = "san-pham/chi-tiet/{$p['product_id']}-{$slug}.html";
+        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";
+        $p['url_cart'] = "gio-hang-{$p['product_id']}/don-mua.html";
+    }
 
     $all_products = array();
     $image_data = get_all_product_img();
