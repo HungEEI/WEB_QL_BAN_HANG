@@ -108,7 +108,7 @@ $info_sliders = get_info_sliders();
                                             <a href="<?php echo $product['url'] ?>" title="" class="thumb">
                                                 <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                             </a>
-                                            <a href="?page=detail_product" title="" class="product-name name-18"><?php echo $product['product_name'] ?></a>
+                                            <a href="<?php echo $product['url'] ?>" title="" class="product-name name-18"><?php echo $product['product_name'] ?></a>
                                             <div class="price">
                                                 <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                                 <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
@@ -150,10 +150,10 @@ $info_sliders = get_info_sliders();
                             if($product['status'] == 'active') {
                                 ?>
                                 <li>
-                                    <a href="?page=detail_product" title="" class="thumb thumb-70">
+                                    <a href="<?php echo $product['url'] ?>" title="" class="thumb thumb-70">
                                         <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                     </a>
-                                    <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                    <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                     <div class="price">
                                         <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
@@ -193,10 +193,10 @@ $info_sliders = get_info_sliders();
 
                                 ?>
                                 <li>
-                                    <a href="?page=detail_product" title="" class="thumb">
+                                    <a href="<?php echo $product['url'] ?>" title="" class="thumb">
                                         <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                     </a>
-                                    <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                    <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                     <div class="price">
                                         <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
@@ -234,10 +234,10 @@ $info_sliders = get_info_sliders();
                         if($product['status'] == 'active') {
                             ?>
                             <li>
-                                <a href="?page=detail_product" title="" class="thumb">
+                                <a href="<?php echo $product['url'] ?>" title="" class="thumb">
                                     <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                 </a>
-                                <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                 <div class="price">
                                     <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                     <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
@@ -275,10 +275,10 @@ $info_sliders = get_info_sliders();
                         if($product['status'] == 'active') {
                             ?>
                             <li>
-                                <a href="?page=detail_product" title="" class="thumb">
+                                <a href="<?php echo $product['url'] ?>" title="" class="thumb">
                                     <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                 </a>
-                                <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                 <div class="price">
                                     <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                     <span class="old"><?php echo currency_format($product['product_discount']) ?></span>

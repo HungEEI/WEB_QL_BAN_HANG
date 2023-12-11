@@ -69,7 +69,7 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="?mod=cart&controller=index&action=add&id=<?php echo $product['product_id'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
                                         <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>              

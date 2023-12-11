@@ -137,6 +137,7 @@ function orderAction() {
 
 function successAction() {
     $success = get_success_info();
+    $cart = get_list_by_cart();
     $email = $success['email'];
     $fullname = $success['fullname'];
     $subject = 'THÔNG TIN ĐƠN HÀNG CỦA BẠN';
@@ -168,7 +169,7 @@ function successAction() {
             <tbody style='text-align: center;'>
     ";
     
-    foreach (get_list_by_cart() as $item) {
+    foreach ($cart as $item) {
         $content .= "
             <tr>
                 <td style='padding-top: 5px; padding-bottom: 5px;'>{$item['product_code']}</td>

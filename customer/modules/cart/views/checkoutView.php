@@ -110,21 +110,7 @@ $num_order = get_num_oder_cart();
                         </tr>
                     </tfoot>
                 </table>
-                <!-- <div id="payment-checkout-wp">
-                    <ul id="payment_methods">
-                        <li>
-                            <input type="radio" id="direct-payment" name="payment-method" value="direct-payment">
-                            <label for="payment-home">Thanh toán online</label>
-                        </li>
-                        <li>
-                            <input type="radio" id="payment-home" name="payment-method" value="payment-home">
-                            <label for="direct-payment">Thanh toán khi nhận hàng</label>
-                        </li>
-                    </ul>
-                </div> -->
-                <!-- <div class="place-order-wp clearfix">
-                    <input type="submit" id="order-now" name="btn-order" value="Đặt hàng">
-                </div> -->
+            </div>
             </div>
         </div>
     </div>

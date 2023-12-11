@@ -41,7 +41,7 @@ get_header();
                                     <tr>
                                         <td><?php echo $cart['product_code'] ?></td>
                                         <td>
-                                            <a href="" title="" class="thumb">
+                                            <a href="" title="" class="thumb thumb-none">
                                                 <img src="../admin/<?php echo $cart['image_url'] ?>" alt="">
                                             </a>
                                         </td>
@@ -66,14 +66,14 @@ get_header();
                             <tr>
                                 <td colspan="7">
                                     <div class="clearfix">
-                                        <p id="total-price" class="fl-right">Tổng giá: <span><?php echo currency_format(get_total_cart()) ?></span></p>
+                                        <p id="total-price" class="fl-right fl-left-total">Tổng giá: <span><?php echo currency_format(get_total_cart()) ?></span></p>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="7">
                                     <div class="clearfix">
-                                        <div class="fl-right">
+                                        <div class="fl-right fl-left-total">
                                             <input type="submit" id="update-cart" name="btn_update_cart" value="Cập nhật giỏ hàng">
                                            <a href="?mod=cart&controller=checkout&action=index" title="" id="checkout-cart">Thanh toán</a>
                                         </div>

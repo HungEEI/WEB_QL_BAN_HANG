@@ -73,6 +73,9 @@
     #support-wp ul.list-item {
         padding-top: 0px;
     }
+    #main-content-wp {
+        padding: 15px 10px 75px 10px;
+    }
 }
 
 @media screen and (max-width: 932px){
@@ -350,6 +353,12 @@
     #same-category-wp .list-item li .action .buy-now {
         margin-right: 36px !important;
     }
+    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart {
+        display: block !important;
+    }
+    #same-category-wp .list-item li .action .buy-now {
+        padding: 8px 19px !important;
+    }
 }
 
 @media screen and (max-width: 438px){
@@ -463,11 +472,25 @@
     #detail-product-wp .info .desc {
         display: none;
     }
-    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart {
+    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart-none {
         display: none;
     }
     #same-category-wp .list-item li .action .buy-now {
         margin-right: 25px !important;
+    }
+    #same-category-wp .list-item li .action .buy-now {
+        padding: 8px 10px;
+    }
+    #info-cart-wp table tbody tr td .thumb-none {
+        border: none;     
+        width: 70px;  
+        min-height: 44px;
+    }
+    #info-cart-wp table tbody tr td .thumb-none img{
+        max-width: 72%;   
+    }
+    .fl-left-total {
+        float: left !important;
     }
 }
 
@@ -490,7 +513,7 @@
     #detail-product-wp{ padding-top: 15px;}
     .detail-product-page #add-to-cart, .detail-product-page #buy-now{ font-size: 13px; padding: 13px 23px;}
     /*CART & CHECKOUT*/
-    .place-order-wp input[type="submit"]{ padding: 15px 30px;}
+    .place-order-wp input[type="submit"]{ padding: 8px 30px;}
     a.d-none {
         display: block !important;
     }
@@ -526,8 +549,8 @@
     .section_flash_sale .titlecate h2 a img {
         width: 19px !important;
     }
-    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart {
-        display: block;
+    #feature-product-wp .list-item li .action .add-cart, #list-product-wp .list-item li .action .add-cart, #same-category-wp .list-item li .action .add-cart-none {
+        display: none !important;
     }
     .section_flash_sale .titlecate h2 a {
         font-size: 14px !important;

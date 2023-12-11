@@ -54,7 +54,7 @@
                                 <a href="trang-chu.html" title="" id="logo"><img class="" src="public/images/logo.png"/></a>
                                 <div id="search-wp">
                                     <form method="POST" action="">
-                                        <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">
+                                        <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">                               
                                         <button type="submit" id="sm-s">Tìm kiếm</button>
                                     </form>
                                 </div>
@@ -66,9 +66,9 @@
                                         <span class="phone">0987.654.321</span>
                                     </div>
                                     <div id="btn-respon" class="fl-right"><i class="fa fa-bars" aria-hidden="true"></i></div>
-                                    <a href="?page=cart" title="giỏ hàng" id="cart-respon-wp" class="fl-right">
+                                    <a href="gio-hang/danh-sach.html" title="giỏ hàng" id="cart-respon-wp" class="fl-right">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span id="num">2</span>
+                                        <span id="num"><?php echo get_num_oder_cart() ?></span>
                                     </a>
                                     <div id="cart-wp" class="fl-right">
                                         <div id="btn-cart">
@@ -78,7 +78,7 @@
                                         <div id="dropdown">
                                             <p class="desc">Có <span><?php echo get_num_oder_cart() ?> sản phẩm</span> trong giỏ hàng</p>
                                             <ul class="list-cart">
-                                                <?php
+                                                <?php                                             
                                                 foreach(get_list_by_cart() as $item) {
                                                     ?>
                                                     <li class="clearfix">

@@ -20,18 +20,4 @@ RewriteRule ^tin-tuc/chi-tiet/([0-9]+)-([a-zA-Z0-9_-]+).html$ ?mod=post&controll
 RewriteRule ^gio-hang/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=index&action=index
 RewriteRule ^thanh-toan/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=checkout&action=index
 RewriteRule ^don-mua/([0-9]+)-thanh-toan.html$ ?mod=cart&controller=checkout&action=add&id=$1
-RewriteRule ^gio-hang-([0-9]+)/don-mua.html$ ?mod=cart&controller=index&action=index&id=$1
-
-
-# RewriteRule ^add/([a-zA-Z0-9_-]+).html$ index.php?mod=cart&action=cart
-# RewriteRule ^cart/([a-zA-Z0-9_-]+).html$ index.php?mod=cart&action=checkout
-
-# RewriteRule ^san-pham/([a-zA-Z0-9_-]+).html$ index.php?mod=proudct&action=index
-# RewriteRule ^san-pham/ten-san-pham/([a-zA-Z0-9_-])-([0-9]+).html$ index.php?mod=proudct&action=product&name=$1&category_id=$2
-# RewriteRule ^san-pham/ten-san-pham/([a-zA-Z0-9_-])-([0-9]+)-([0-9]+).html$ index.php?mod=proudct&action=detail&name=$1&id=$2$cat_id=$3
-
-# RewriteRule ^bai-viet/([a-zA-Z0-9_-]+).html$ index.php?mod=post&action=index
-# RewriteRule ^bai-viet/danh-muc/([a-zA-Z0-9_-](0-9)+).html$ index.php?mod=post&action=detail&name=$1&category_id=$2
-# RewriteRule ^bai-viet/danh-muc/chi-tiet/([a-zA-Z0-9_-])-([0-9]+)-([0-9]+).html$ index.php?mod=post&action=detail&name=$1&id=$2$cat_id=$3
-
-# RewriteRule ^page/([a-zA-Z0-9_-](0-9)+).html$ index.php?mod=page&action=detail&page_id=$2
+RewriteRule ^gio-hang-([0-9]+)/don-mua.html$ ?mod=cart&controller=index&action=add&id=$1

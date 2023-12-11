@@ -22,8 +22,9 @@ function get_info_product_by_id() {
     ");
     foreach($list_product as &$p) {
         $slug = create_slug($p['product_slug']);
-        $p['url'] = "san-pham/chi-tiet/$id/{$slug}.html";
-        $p['url_cart'] = "san-pham/chi-tiet/$id/{$slug}.html";
+        $p['url'] = "san-pham/chi-tiet/{$p['product_id']}-{$slug}.html";
+        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";
+        $p['url_cart'] = "gio-hang-{$p['product_id']}/don-mua.html";
     }
 
     $all_image_urls = array();
@@ -97,11 +98,16 @@ function get_product_related_by_id($id) {
     $categories = get_all_subcat($id);
     $categories[] = $id;
 
-    $items = db_fetch_array("SELECT products.product_id, products.product_name, products.product_price, products.product_discount, product_categories.parent_id
+    $items = db_fetch_array("SELECT products.product_id,products.product_slug, products.product_name, products.product_price, products.product_discount, product_categories.parent_id
         FROM `products`
         JOIN `product_categories` ON products.product_category_id = product_categories.product_category_id
         WHERE products.product_category_id IN (" . implode(",", $categories) . ")
     ");
+    foreach ($items as &$p) {
+        $slug = create_slug($p['product_slug']);
+        $p['url'] = "san-pham/chi-tiet/{$p['product_id']}-{$slug}.html";
+        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";     
+    }
 
     $product_thumb = array();
     foreach ($items as $product) {

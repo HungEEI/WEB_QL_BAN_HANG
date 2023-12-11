@@ -64,7 +64,7 @@ $info_product = get_info_product_by_id();
                             <input type="text" name="num-order" value="1" id="num-order">
                             <a title="" id="plus"><i class="fa fa-plus"></i></a>
                         </div>
-                        <a href="?page=cart" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
+                        <a href="<?php echo $info_product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart">Thêm giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -82,11 +82,11 @@ $info_product = get_info_product_by_id();
                 </div>
                 <div class="section-detail">
                     <ul class="list-item">
-                        <?php 
+                        <?php                      
                         foreach(get_product_related_by_id(3) as $p) {
                             ?>
                             <li>
-                                <a href="" title="" class="thumb">
+                                <a href="<?php echo $p['url'] ?>" title="" class="thumb">
                                     <img src="../admin/<?php echo $p['thumb'][0] ?>">
                                 </a>
                                 <a href="" title="" class="product-name"><?php echo $p['product_name'] ?></a>
@@ -95,8 +95,8 @@ $info_product = get_info_product_by_id();
                                     <span class="old"><?php echo currency_format($p['product_discount']) ?></span>
                                 </div>
                                 <div class="action clearfix">
-                                    <a href="" title="" class="add-cart fl-left">Thêm giỏ hàng</a>
-                                    <a href="" title="" class="buy-now fl-right">Mua ngay</a>
+                                    <a href="" title="" class="add-cart add-cart-none fl-left">Thêm giỏ hàng</a>
+                                    <a href="<?php echo $p['url_checkout'] ?>" title="" class="buy-now fl-right">Mua ngay</a>
                                 </div>
                             </li>
                             <?php
