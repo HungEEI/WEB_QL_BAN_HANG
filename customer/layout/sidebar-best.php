@@ -14,10 +14,12 @@ function get_info_product_img($product_id) {
 
 # Lấy thông tin danh sách sản phẩm
 function get_info_list_product() {
-    $list_product = db_fetch_array("SELECT products.product_id, products.product_name, products.product_price, products.product_discount
+    $list_product = db_fetch_array("SELECT products.product_id, products.product_name, products.product_price, products.product_discount, products.product_slug
     FROM `products`
     ");
     foreach ($list_product as &$p) {
+        $slug = create_slug($p['product_slug']);
+        $p['url'] = "san-pham/chi-tiet/{$p['product_id']}-{$slug}.html";
         $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";
     }
 
@@ -46,11 +48,11 @@ function get_info_list_product() {
                         foreach($list as $pin) {
                             ?>
                             <li class="clearfix">
-                                <a href="?page=detail_product" title="" class="thumb fl-left">
+                                <a href="<?php echo $pin['url'] ?>" title="" class="thumb fl-left">
                                     <img src="../admin/<?php echo $pin['thumb'][0] ?>" alt="">
                                 </a>
                                 <div class="info fl-right">
-                                    <a href="?page=detail_product" title="" class="product-name"><?php echo $pin['product_name'] ?></a>
+                                    <a href="<?php echo $pin['url'] ?>" title="" class="product-name"><?php echo $pin['product_name'] ?></a>
                                     <div class="price">
                                         <span class="new"><?php echo currency_format($pin['product_price']) ?></span>
                                         <span class="old"><?php echo currency_format($pin['product_discount']) ?></span>

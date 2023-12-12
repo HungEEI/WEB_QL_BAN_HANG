@@ -173,7 +173,7 @@ function successAction() {
         $content .= "
             <tr>
                 <td style='padding-top: 5px; padding-bottom: 5px;'>{$item['product_code']}</td>
-                <td><img style='width: 120px;' src='../admin/{$item['image_url']}' alt=''></td>
+                <td><img style='width: 120px;' src='{$item['image_url']}' alt=''></td>
                 <td>{$item['product_name']}</td>
                 <td>{$item['qty']}</td>
                 <td>" . currency_format($item['product_total_money']) . "</td>
@@ -194,10 +194,6 @@ function successAction() {
     send_email($email, $fullname, $subject, $content);               
     load_view('success');
     delete_cart_buy();
-}
-
-function deleteAction() {
-    
 }
 
 ?>

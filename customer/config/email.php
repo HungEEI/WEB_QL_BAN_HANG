@@ -18,12 +18,12 @@
  * charset: Mã ký tự nội dung mail(UTF-8)
  */
 
-$config['email'] = array(
+ $config['email'] = array(
     'protocol' => 'smtp',
     'smtp_host' => 'smtp.googlemail.com',
     'smtp_fullname' => 'ISMART',
-    'smtp_user' => 'vanhung11501@gmail.com',
-    'smtp_pass' => 'aano nrgm katl spkb',
+    'smtp_user' => 'nguyenvanhung_t65@hus.edu.vn',
+    'smtp_pass' => 'nlyl nltp jbgx nbrw',
     'smtp_port' => 587,
     'smtp_secure' => 'tls',
     'smtp_timeout' => '7',

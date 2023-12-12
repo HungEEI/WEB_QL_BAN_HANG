@@ -106,7 +106,8 @@ function get_product_related_by_id($id) {
     foreach ($items as &$p) {
         $slug = create_slug($p['product_slug']);
         $p['url'] = "san-pham/chi-tiet/{$p['product_id']}-{$slug}.html";
-        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";     
+        $p['url_checkout'] = "don-mua/{$p['product_id']}-thanh-toan.html";   
+        $p['url_cart'] = "gio-hang-{$p['product_id']}/don-mua.html";  
     }
 
     $product_thumb = array();

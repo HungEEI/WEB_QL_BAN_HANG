@@ -47,6 +47,7 @@ $pages = db_fetch_row("SELECT * FROM `pages`");
         <?php get_sidebar('best') ?>
     </div>
 </div>
+</div>
 
 <?php
 

@@ -6,7 +6,7 @@ get_header();
 $all_products = get_all_products();
 $num_row = count($all_products);
 // Số lượng bản ghi trên trang
-$num_per_page = 4;
+$num_per_page = 8;
 //Tổng số bản ghi
 $total_row = $num_row;
 // Tính tổng số trang   
@@ -60,10 +60,10 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                                 $temp++;
                                 ?>
                                 <li class="col-4">
-                                    <a href="?mod=products&controller=index&action=detail&id=<?php echo $product['product_id'] ?>" title="" class="thumb">
+                                    <a href="<?php echo $product['url'] ?>" title="" class="thumb">
                                         <img src="../admin/<?php echo $product['thumb'][0] ?>">
                                     </a>
-                                    <a href="?page=detail_product" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                    <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                     <div class="price">
                                         <span class="new"><?php echo currency_format($product['product_price']) ?></span>
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
@@ -87,6 +87,7 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
         </div>
         <?php get_sidebar('product') ?>
     </div>
+</div>
 </div>
 
 <?php

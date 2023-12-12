@@ -94,6 +94,7 @@ get_header();
         </div>
     </div>
 </div>
+</div>
 
 <?php
 

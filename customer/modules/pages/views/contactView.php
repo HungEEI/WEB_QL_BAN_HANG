@@ -74,6 +74,7 @@ $list_pages = db_fetch_array("SELECT * FROM `pages`");
         <?php get_sidebar('best') ?>
     </div>
 </div>
+</div>
 
 <?php
 

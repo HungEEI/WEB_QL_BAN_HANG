@@ -95,7 +95,7 @@ $info_product = get_info_product_by_id();
                                     <span class="old"><?php echo currency_format($p['product_discount']) ?></span>
                                 </div>
                                 <div class="action clearfix">
-                                    <a href="" title="" class="add-cart add-cart-none fl-left">Thêm giỏ hàng</a>
+                                    <a href="<?php $p['url_cart'] ?>" title="" class="add-cart add-cart-none add-cart-block fl-left">Thêm giỏ hàng</a>
                                     <a href="<?php echo $p['url_checkout'] ?>" title="" class="buy-now fl-right">Mua ngay</a>
                                 </div>
                             </li>

@@ -202,7 +202,7 @@ $info_sliders = get_info_sliders();
                                         <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
                                     </div>
                                     <div class="action clearfix">
-                                        <a href="?mod=order&controller=index&action=index" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                        <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
                                         <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
                                     </div>
                                 </li>                       
