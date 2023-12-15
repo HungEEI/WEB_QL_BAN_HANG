@@ -1,5 +1,8 @@
-<?php 
-    $info_user = db_fetch_row("SELECT * FROM `users`");
+<?php
+    if(isset($_SESSION['user_login'])) {
+        $id = db_fetch_row("SELECT users.user_id FROM `users` WHERE users.username = '{$_SESSION['user_login']}'");
+        $info_user = db_fetch_row("SELECT * FROM `users` WHERE users.user_id = {$id['user_id']}");
+    }
 ?>
 
 <!DOCTYPE html>

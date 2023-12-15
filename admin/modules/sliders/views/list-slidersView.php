@@ -10,7 +10,7 @@ $list_sliders = get_slider();
 
 $num_row = count($list_sliders);
 // Số lượng bản ghi trên trang
-$num_per_page = 1;
+$num_per_page = 2;
 //Tổng số bản ghi
 $total_row = $num_row;
 // Tính tổng số trang   
@@ -97,7 +97,7 @@ $start = ($page - 1) * $num_per_page;
 
 <script>
     function Del(name) {
-        return confirm("Bạn có muốn xóa trang: " + name + " ?")
+        return confirm("Bạn có muốn xóa slider: " + name + " ?")
     }
 </script>
 

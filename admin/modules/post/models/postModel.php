@@ -5,7 +5,9 @@ function get_info_list_post() {
     FROM `posts`
     INNER JOIN `users` ON posts.user_id = users.user_id
     INNER JOIN `images` ON posts.image_id = images.image_id
-    INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_category_id");
+    INNER JOIN `post_categories` ON posts.post_category_id = post_categories.post_category_id
+    ORDER BY posts.post_id DESC
+    ");
 
     return $list_post;
 }

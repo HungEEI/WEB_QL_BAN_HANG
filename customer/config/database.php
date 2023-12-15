@@ -19,7 +19,7 @@ $db = array(
     'hostname' => 'localhost',
     'username' => 'root',
     'password' => '',
-    'database' => 'db_ismart',
+    'database' => 'db_ismart2',
 );
 
 

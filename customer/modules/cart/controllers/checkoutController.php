@@ -44,7 +44,7 @@ function addAction() {
 }
 
 function orderAction() {
-    global $error, $fullname, $email, $address, $phone, $payment, $note;
+    global $error;
     $user_id = db_fetch_row("SELECT user_id FROM `users`");
     if(isset($_POST['btn-order'])) {
         $error = array();
@@ -84,54 +84,59 @@ function orderAction() {
         }
 
         $note = $_POST['note'];
-        if(empty($error)) {
-            # add customer
-            $data_customer = [
-                'fullname' => $fullname,
-                'email' => $email,
-                'phone' => $phone,
-                'address' => $address
-            ];
-            $customer_id = db_insert('customer', $data_customer);
-
-            # add orders
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $data_order = [
-                'user_id' => (int)$user_id,
-                'customer_id' => (int)$customer_id,
-                'product_quantity' => get_num_oder_cart(),
-                'total_amount' => get_total_cart(),
-                'payment_method' => $payment,
-                'note' => $note,
-                'shipping_address' => $address,     
-                'order_code' => "",
-                'order_date' => date('Y-m-d H:i:s'),
-            ];
-            // Chuyển đổi giá trị của mảng thành chuỗi
-            foreach ($data_order as $key => $value) {
-                $data_order[$key] = is_array($value) ? json_encode($value) : (string) $value;
-            }
-            $order_id = db_insert('orders', $data_order);
-            $current_time = time(); # lấy time hiện tại theo dạng chuỗi
-            $time_format = date("Hs", $current_time);
-            $order_code = "#NVH".$order_id . "_" . $time_format;
-            $update_order_coder = [
-                'order_code' => $order_code
-            ];
-            db_update('orders', $update_order_coder, "order_id = '{$order_id}'");
-            # add order_items
-            foreach (get_list_by_cart() as $product) {
-                $data_order_item = [
-                    'order_id' => (int)$order_id,
-                    'product_id' => (int)$product['product_id'],
-                    'price' => $product['product_price'],
-                    'quantity' => $product['qty']
+        if(get_num_oder_cart() > 0) {
+            if(empty($error)) {
+                # add customer
+                $data_customer = [
+                    'fullname' => $fullname,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'address' => $address
                 ];
-
-                db_insert('order_items', $data_order_item);
-            }
-            redirect("?mod=cart&controller=checkout&action=success&id={$customer_id}"); 
-        }  
+                $customer_id = db_insert('customer', $data_customer);
+    
+                # add orders
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $data_order = [
+                    'user_id' => (int)$user_id,
+                    'customer_id' => (int)$customer_id,
+                    'product_quantity' => get_num_oder_cart(),
+                    'total_amount' => get_total_cart(),
+                    'payment_method' => $payment,
+                    'note' => $note,
+                    'shipping_address' => $address,     
+                    'order_code' => "",
+                    'order_date' => date('Y-m-d H:i:s'),
+                ];
+                // Chuyển đổi giá trị của mảng thành chuỗi
+                foreach ($data_order as $key => $value) {
+                    $data_order[$key] = is_array($value) ? json_encode($value) : (string) $value;
+                }
+                $order_id = db_insert('orders', $data_order);
+                $current_time = time(); # lấy time hiện tại theo dạng chuỗi
+                $time_format = date("Hs", $current_time);
+                $order_code = "#NVH".$order_id . "_" . $time_format;
+                $update_order_coder = [
+                    'order_code' => $order_code
+                ];
+                db_update('orders', $update_order_coder, "order_id = '{$order_id}'");
+                # add order_items
+                foreach (get_list_by_cart() as $product) {
+                    $data_order_item = [
+                        'order_id' => (int)$order_id,
+                        'product_id' => (int)$product['product_id'],
+                        'price' => $product['product_price'],
+                        'quantity' => $product['qty']
+                    ];
+    
+                    db_insert('order_items', $data_order_item);
+                }
+                redirect("?mod=cart&controller=checkout&action=success&id={$customer_id}"); 
+            }  
+        }else {
+            $error['order'] = "Không có sản phẩm không thể đặt hàng";    
+            load_view('checkout');
+        }
     }
 }
 

@@ -19,19 +19,23 @@ $result = data_tree($list_cat);
             <form id="form-upload-single" enctype="multipart/form-data" method="POST">
                 <div class="form-group">
                     <label for="post-title">Tiêu đề bài viết</label>
-                    <input class="form-control" type="text" name="post-title" id="name">                                                          
+                    <input class="form-control" type="text" name="post-title" id="name">    
+                    <?php echo form_error('post-title') ?>                                                      
                 </div>
                 <div class="form-group">
                     <label for="post_slug">Slug</label>
                     <input class="form-control" type="text" name="post-slug" id="name">
+                    <?php echo form_error('post-slug') ?>
                 </div>              
                 <div class="form-group">
                     <label for="post_except">Mô tả ngắn</label>
                     <textarea name="post-except" class="ckeditor" id="content"></textarea>
+                    <?php echo form_error('post-except') ?>
                 </div>
                 <div class="form-group">
                     <label for="content">Nội dung bài viết</label>
                     <textarea name="post-content" class="ckeditor" id="content"></textarea>
+                    <?php echo form_error('post-content') ?>
                 </div>
                 <div class="form-group">
                     <label for="">Danh mục</label>
@@ -44,7 +48,7 @@ $result = data_tree($list_cat);
                             <?php
                         }
                         ?> 
-                    </select>                 
+                    </select>     
                 </div>
                 <div class="form-group">
                     <label for="">Trạng thái</label>
@@ -67,6 +71,7 @@ $result = data_tree($list_cat);
                     <input type="submit" name="Upload" value="Upload" id="upload_single_bt">
                     <input type ="hidden" name="image_id" id="thumbnail_url" value="" />
                     <div id="show_list_file" >
+                    <?php echo form_error('image_id') ?>
                 </div>
                 <button type="submit" name="btn-add" class="btn btn-add btn-primary">Thêm mới</button>
             </form>            

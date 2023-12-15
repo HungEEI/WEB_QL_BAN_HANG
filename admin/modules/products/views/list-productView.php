@@ -8,7 +8,7 @@ get_sidebar();
 <?php
 $num_row = count(get_info_list_product());
 // Số lượng bản ghi trên trang
-$num_per_page = 2;
+$num_per_page = 10;
 //Tổng số bản ghi
 $total_row = $num_row;
 // Tính tổng số trang   
@@ -23,8 +23,13 @@ $start = ($page - 1) * $num_per_page;
             <h5 class="m-0 ">Danh sách sản phẩm</h5>
             <div class="form-search form-inline">
                 <form action="#">
-                    <input type="" class="form-control form-search" placeholder="Tìm kiếm">
+                <form action="?mod=products&controller=index&action=search" method="GET">
+                    <input type="" class="form-control form-search" name="search" placeholder="Tìm kiếm" required value="<?php if(isset($_GET['search'])) echo $_GET['search'] ?>">
                     <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary">
+                    <input type="hidden" name="mod" value="products">
+                    <input type="hidden" name="controller" value="index">
+                    <input type="hidden" name="action" value="search">
+                </form>
                 </form>
             </div>
         </div>
@@ -63,60 +68,114 @@ $start = ($page - 1) * $num_per_page;
                 <tbody>
                 <?php 
                     $temp = 0;
-                    for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
-                        $product = get_info_list_product($i);          
-                        $temp++;             
-                        ?>                      
-                        <tr class="">                      
-                            <td>
-                                <input type="checkbox">
-                            </td>
-                            <td><?php echo $temp; ?></td>
-                            <td>                            
-                                <img class="img-product" src="<?php echo $product[$i]['thumb'][0]['image_url']?>
-                                " alt="">
-                            </td>
-                            <td><a href="#"><?php echo $product[$i]['product_name'] ?></a></td>
-                            <td><?php echo currency_format($product[$i]['product_price']) ?></td>
-                            <td><?php echo $product[$i]['category_name'] ?></td>
-                          
+                    $num = isset($num) ? $num : 0;
+                    if($num > 0){
+                        foreach($results as $product){        
+                            $temp++;             
+                            ?>                      
+                            <tr class="">                      
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td><?php echo $temp; ?></td>
+                                <td>                            
+                                    <img class="img-product" src="<?php echo $product['thumb'][0]['image_url']?>
+                                    " alt="">
+                                </td>
+                                <td><a href="#"><?php echo $product['product_name'] ?></a></td>
+                                <td><?php echo currency_format($product['product_price']) ?></td>
+                                <td><?php echo $product['category_name'] ?></td>
+                              
+                                <?php
+                                if($product['stock_quantity'] > 0) {
+                                    ?>
+                                    <td><span class="badge badge-success">Còn hàng</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-dark">Hết hàng</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <td><?php echo $product['fullname'] ?></td>
+                                <?php
+                                if($product['status'] == 'active') {
+                                    ?>
+                                    <td><span class="badge badge-success">Công khai</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-warning">Chờ duyệt</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <!-- <td><?php echo $product['created_at'] ?></td>
+                                <td><?php echo $product['updated_at'] ?></td> -->
+                                <td>
+                                    <a href="?mod=products&controller=index&action=update&id=<?php echo $product['product_id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a onclick="return Del('<?php echo $product['product_name'] ?>')" href="?mod=products&controller=index&action=delete&id=<?php echo $product['product_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>                 
                             <?php
-                            if($product[$i]['stock_quantity'] > 0) {
-                                ?>
-                                <td><span class="badge badge-success">Còn hàng</span></td>
+                        }                  
+                    }else {
+                        for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
+                            $product = get_info_list_product($i);          
+                            $temp++;             
+                            ?>                      
+                            <tr class="">                      
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td><?php echo $temp; ?></td>
+                                <td>                            
+                                    <img class="img-product" src="<?php echo $product[$i]['thumb'][0]['image_url']?>
+                                    " alt="">
+                                </td>
+                                <td><a href="#"><?php echo $product[$i]['product_name'] ?></a></td>
+                                <td><?php echo currency_format($product[$i]['product_price']) ?></td>
+                                <td><?php echo $product[$i]['category_name'] ?></td>
+                              
                                 <?php
-                            }else {
+                                if($product[$i]['stock_quantity'] > 0) {
+                                    ?>
+                                    <td><span class="badge badge-success">Còn hàng</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-dark">Hết hàng</span></td>
+                                    <?php
+                                }
                                 ?>
-                                <td><span class="badge badge-dark">Hết hàng</span></td>
+                                <td><?php echo $product[$i]['fullname'] ?></td>
                                 <?php
-                            }
-                            ?>
-                            <td><?php echo $product[$i]['fullname'] ?></td>
+                                if($product[$i]['status'] == 'active') {
+                                    ?>
+                                    <td><span class="badge badge-success">Công khai</span></td>
+                                    <?php
+                                }else {
+                                    ?>
+                                    <td><span class="badge badge-warning">Chờ duyệt</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <!-- <td><?php echo $product[$i]['created_at'] ?></td>
+                                <td><?php echo $product[$i]['updated_at'] ?></td> -->
+                                <td>
+                                    <a href="?mod=products&controller=index&action=update&id=<?php echo $product[$i]['product_id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a onclick="return Del('<?php echo $product[$i]['product_name'] ?>')" href="?mod=products&controller=index&action=delete&id=<?php echo $product[$i]['product_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>                 
                             <?php
-                            if($product[$i]['status'] == 'active') {
-                                ?>
-                                <td><span class="badge badge-success">Công khai</span></td>
-                                <?php
-                            }else {
-                                ?>
-                                <td><span class="badge badge-warning">Chờ duyệt</span></td>
-                                <?php
-                            }
-                            ?>
-                            <!-- <td><?php echo $product[$i]['created_at'] ?></td>
-                            <td><?php echo $product[$i]['updated_at'] ?></td> -->
-                            <td>
-                                <a href="?mod=products&controller=index&action=update&id=<?php echo $product[$i]['product_id'] ?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                                <a href="?mod=products&controller=index&action=delete&id=<?php echo $product[$i]['product_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>                 
-                        <?php
+                        }
                     }
                     ?>
             </table>
             <?php 
-            if($num_page >= 2) {
-                echo get_pugging($num_page, $page, $base_url = "?mod=products&controller=index&action=list");
+            if($num ==0) {
+                if($num_page >= 2) {
+                    echo get_pugging($num_page, $page, $base_url = "?mod=products&controller=index&action=list");
+                }
             }
             ?>
         </div>
@@ -125,7 +184,7 @@ $start = ($page - 1) * $num_per_page;
 
 <script>
 function Del(name) {
-    return confirm("Bạn có muốn xóa sản phẩm: " + name + " ?")
+    return confirm("Bạn chắc chắn muốn xóa sản phẩm: " + name + " ?")
 }
 </script>
 

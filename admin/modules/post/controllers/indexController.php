@@ -8,27 +8,50 @@ function construct() {
 }
 
 function addAction() {
+    global $error;
     $user_id = db_fetch_row("SELECT * FROM `users`");
     if(isset($_POST['btn-add'])) {
-        $post_title = $_POST['post-title'];
-        $post_slug = create_slug($_POST['post-slug']);    
+        $error = array();
+        if(empty($_POST['post-title'])) {
+            $error['post-title'] = "Hãy tạo tiêu đề";
+        }else {
+            $post_title = $_POST['post-title'];
+        }
+        if(empty($_POST['post-slug'])) {
+            $error['post-slug'] = "Hãy tạo đường dẫn";
+        }else {
+            $post_slug = create_slug($_POST['post-slug']);    
+        }
+        if(empty($_POST['post-except'])) {
+            $error['post-except'] = "Hãy tạo mô tả ngắn";
+        }else {
+            $post_except = $_POST['post-except'];
+        }
+        if(empty($_POST['post-content'])) {
+            $error['post-content'] = "Hãy tạo nội dung";
+        }else {
+            $post_content = $_POST['post-content'];
+        }
+        if(empty($_POST['image_id'])) {
+            $error['image_id'] = "Hãy chọn ảnh thumb";
+        }else {
+            $image_id = $_POST['image_id'];
+        }     
         $category_id = $_POST['sl-cat'];
-        $post_except = $_POST['post-except'];
-        $post_content = $_POST['post-content'];
-        $image_id = $_POST['image_id'];
-
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $data = [
-            'user_id' => $user_id['user_id'],
-            'post_category_id' => $category_id,
-            'image_id' => $image_id,
-            'post_title' => $post_title,
-            'post_slug' => $post_slug,
-            'post_except' => $post_except,
-            'post_content' => $post_content,   
-            'created_at' => date('Y-m-d H:i:s'),     
-        ];
-        db_insert("posts", $data);
+        if(empty($error)) {
+            date_default_timezone_set('Asia/Ho_Chi_Minh');
+            $data = [
+                'user_id' => $user_id['user_id'],
+                'post_category_id' => $category_id,
+                'image_id' => $image_id,
+                'post_title' => $post_title,
+                'post_slug' => $post_slug,
+                'post_except' => $post_except,
+                'post_content' => $post_content,   
+                'created_at' => date('Y-m-d H:i:s'),     
+            ];
+            db_insert("posts", $data);
+        }
     } 
     load_view('add-post');
 }

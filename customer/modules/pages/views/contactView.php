@@ -42,7 +42,7 @@ $list_pages = db_fetch_array("SELECT * FROM `pages`");
                             </ul>
                         </div>
                         <div class="service">
-                            <h3 class="section_title">CUSTOMER_SERVICE</h3>
+                            <h3 class="section_title">CUSTOMER SERVICE</h3>
                             <ul class="list-item">
                                 <li>
                                     <p>334 Nguyễn Trãi - Thanh Xuân - Hà Nội</p>

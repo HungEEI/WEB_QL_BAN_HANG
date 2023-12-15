@@ -9,7 +9,7 @@ get_sidebar();
 $order = get_list_order();
 $num_row = count(get_list_order());
 // Số lượng bản ghi trên trang
-$num_per_page = 4;
+$num_per_page = 10;
 //Tổng số bản ghi
 $total_row = $num_row;
 // Tính tổng số trang   
@@ -22,9 +22,12 @@ $start = ($page - 1) * $num_per_page;
         <div class="card-header font-weight-bold d-flex justify-content-between align-items-center">
             <h5 class="m-0 ">Danh sách đơn hàng</h5>
             <div class="form-search form-inline">
-                <form action="#">
-                    <input type="" class="form-control form-search" placeholder="Tìm kiếm">
+                <form action="?mod=orders&controller=index&action=search" method="GET">
+                    <input type="" class="form-control form-search" name="search" placeholder="Tìm kiếm" required value="<?php if(isset($_GET['search'])) echo $_GET['search'] ?>">
                     <input type="submit" name="btn-search" value="Tìm kiếm" class="btn btn-primary">
+                    <input type="hidden" name="mod" value="orders">
+                    <input type="hidden" name="controller" value="index">
+                    <input type="hidden" name="action" value="search">
                 </form>
             </div>
         </div>
@@ -53,82 +56,155 @@ $start = ($page - 1) * $num_per_page;
                     </thead>
                     <tbody>
                         <?php
-                        // show_array($order);
+                        // show_array($order); 
+                        $num = isset($num) ? $num : 0;                   
                         $temp = 0;
-                        for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
-                            $item = get_list_order($i); 
-                            $temp++;
-                            ?>
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                </td>
-                                <td><?php echo $temp ?></td>
-                                <td><?php echo $item[$i]['order_code'] ?></td>
-                                <td>
-                                    <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $item[$i]['order_id'] ?>">
-                                        <?php echo $item[$i]['fullname'] ?><br>
-                                        0<?php echo $item[$i]['phone'] ?>
-                                    </a>
-                                </td>
-                                <td><?php echo currency_format($item[$i]['total_amount']) ?></td>
-                                <td>
-                                        <?php
-                                        switch ($item[$i]['status']) {
-                                            case 'pending':
-                                                ?>
-                                                <span class="badge bg-danger text-white">
-                                                    Đang chờ xử lý
-                                                </span>
-                                                <?php
-                                                break;
-                                            case 'processing':
-                                                ?>
-                                                <span class="badge badge-warning">
-                                                    Đang xử lý
-                                                </span>
-                                                <?php
-                                                break;
-                                            case 'shipped':
-                                                ?>
-                                                <span class="badge bg-success text-white">
-                                                    Đã vận chuyển
-                                                </span>
-                                                <?php
-                                                break;
-                                            case 'delivered':
-                                                ?>
-                                                <span class="badge bg-primary text-white">
-                                                    Đã giao hàng
-                                                </span>
-                                                <?php
-                                                break;
-                                            case 'canceled':
-                                                ?>
-                                                <span class='badge bg-dark text-white'>
-                                                    Đã hủy
-                                                </span>
-                                              
-                                                <?php
-                                                break;
-                                            default:                                      
-                                                break;
-                                        }
-                                        ?>
-                                </td>
-                                <td><?php echo $item[$i]['order_date'] ?></td>
-                                <td>                                  
-                                    <a onclick="return Del('<?php echo $item[$i]['order_code'] ?>')" href="?mod=orders&controller=index&action=delete&id=<?php echo $item[$i]['order_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <?php
+                        if($num > 0) {
+                            foreach($results as $item){
+                                $temp++;
+                                ?>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                    </td>
+                                    <td><?php echo $temp ?></td>
+                                    <td><?php echo $item['order_code'] ?></td>
+                                    <td>
+                                        <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $item['order_id'] ?>">
+                                            <?php echo $item['fullname'] ?><br>
+                                            0<?php echo $item['phone'] ?>
+                                        </a>
+                                    </td>
+                                    <td><?php echo currency_format($item['total_amount']) ?></td>
+                                    <td>
+                                            <?php
+                                            switch ($item['status']) {
+                                                case 'pending':
+                                                    ?>
+                                                    <span class="badge bg-danger text-white">
+                                                        Đang chờ xử lý
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'processing':
+                                                    ?>
+                                                    <span class="badge badge-warning">
+                                                        Đang xử lý
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'shipped':
+                                                    ?>
+                                                    <span class="badge bg-success text-white">
+                                                        Đã vận chuyển
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'delivered':
+                                                    ?>
+                                                    <span class="badge bg-primary text-white">
+                                                        Đã giao hàng
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'canceled':
+                                                    ?>
+                                                    <span class='badge bg-dark text-white'>
+                                                        Đã hủy
+                                                    </span>
+                                                  
+                                                    <?php
+                                                    break;
+                                                default:                                      
+                                                    break;
+                                            }
+                                            ?>
+                                    </td>
+                                    <td><?php echo $item['order_date'] ?></td>
+                                    <td>                                  
+                                        <a onclick="return Del('<?php echo $item['order_code'] ?>')" href="?mod=orders&controller=index&action=delete&id=<?php echo $item['order_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                        }else {
+                            for($i = $start; $i < min($start + $num_per_page, $num_row); $i++){
+                                $item = get_list_order($i); 
+                                $temp++;
+                                ?>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox">
+                                    </td>
+                                    <td><?php echo $temp ?></td>
+                                    <td><?php echo $item[$i]['order_code'] ?></td>
+                                    <td>
+                                        <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $item[$i]['order_id'] ?>">
+                                            <?php echo $item[$i]['fullname'] ?><br>
+                                            0<?php echo $item[$i]['phone'] ?>
+                                        </a>
+                                    </td>
+                                    <td><?php echo currency_format($item[$i]['total_amount']) ?></td>
+                                    <td>
+                                            <?php
+                                            switch ($item[$i]['status']) {
+                                                case 'pending':
+                                                    ?>
+                                                    <span class="badge bg-danger text-white">
+                                                        Đang chờ xử lý
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'processing':
+                                                    ?>
+                                                    <span class="badge badge-warning">
+                                                        Đang xử lý
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'shipped':
+                                                    ?>
+                                                    <span class="badge bg-success text-white">
+                                                        Đã vận chuyển
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'delivered':
+                                                    ?>
+                                                    <span class="badge bg-primary text-white">
+                                                        Đã giao hàng
+                                                    </span>
+                                                    <?php
+                                                    break;
+                                                case 'canceled':
+                                                    ?>
+                                                    <span class='badge bg-dark text-white'>
+                                                        Đã hủy
+                                                    </span>
+                                                  
+                                                    <?php
+                                                    break;
+                                                default:                                      
+                                                    break;
+                                            }
+                                            ?>
+                                    </td>
+                                    <td><?php echo $item[$i]['order_date'] ?></td>
+                                    <td>                                  
+                                        <a onclick="return Del('<?php echo $item[$i]['order_code'] ?>')" href="?mod=orders&controller=index&action=delete&id=<?php echo $item[$i]['order_id'] ?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                         }
                         ?>
                     </tbody>
                 </table>
                 <?php 
-                if($num_page >= 2) {
-                    echo get_pugging($num_page, $page, $base_url = "?mod=orders&controller=index&action=index");
+                if($num == 0) {
+                    if($num_page >= 2) {
+                        echo get_pugging($num_page, $page, $base_url = "?mod=orders&controller=index&action=index");
+                    }
                 }
                 ?>
         </div>

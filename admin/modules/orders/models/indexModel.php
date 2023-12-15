@@ -5,6 +5,7 @@ function get_list_order() {
     $list = db_fetch_array("SELECT orders.*, customer.fullname, customer.phone
     FROM `orders`
     JOIN `customer` ON customer.customer_id = orders.customer_id
+    ORDER BY orders.order_id DESC
     ");
     return $list;
 }

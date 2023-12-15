@@ -5,7 +5,7 @@ function get_info_product_img($product_id) {
     $list_img = db_fetch_array("SELECT product_images.pin, images.image_url
     FROM `product_images`  
     JOIN `images` ON product_images.image_id = images.image_id
-    WHERE product_images.product_id = $product_id
+    WHERE product_images.product_id = $product_id 
     ");
 
     return $list_img;
@@ -17,6 +17,7 @@ function get_info_list_product() {
     FROM `products`
     JOIN `users` ON products.user_id = users.user_id
     JOIN `product_categories` ON products.product_category_id = product_categories.product_category_id
+    ORDER BY products.product_id DESC
     ");
 
     foreach ($list_product as &$product) {

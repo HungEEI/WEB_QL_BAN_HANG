@@ -115,7 +115,7 @@ $start = ($page - 1) * $num_per_page;
 
 <script>
 function Del(name) {
-    Del("Bạn có muốn xóa bài viết: " + name + " ?")
+    Del("Bạn chắc chắn muốn xóa bài viết: " + name + " ?")
 }
 </script>
 

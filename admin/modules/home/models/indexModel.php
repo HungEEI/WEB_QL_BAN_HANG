@@ -6,7 +6,7 @@ function get_list_order() {
     FROM `orders`
     JOIN `customer` ON customer.customer_id = orders.customer_id
     ORDER BY orders.order_id DESC
-    LIMIT 5
+    LIMIT 10
     ");
     return $list;
 }

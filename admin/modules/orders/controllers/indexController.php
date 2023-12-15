@@ -40,3 +40,25 @@ function updateAction() {
     }
     load_view('detail');
 }
+
+function searchAction() {
+    $list = get_list_order();
+    $results = [];
+    $num = 0;
+
+    if(isset($_GET['btn-search'])) {
+        $search = $_GET['search'];
+        if(empty($search)) {
+            echo "Yêu cầu nhập lại";
+        }else {
+            $sql = "SELECT * FROM `orders` 
+            JOIN `customer` ON orders.customer_id = customer.customer_id
+            WHERE CONCAT(order_code, order_id, order_date, total_amount, fullname) LIKE '%" . $search . "%'
+            ORDER BY orders.order_id DESC
+            ";
+            $results = db_fetch_array($sql);
+            $num = count($results);
+        }
+    }
+    load_view('index', ['list_order' => $list, 'results' => $results, 'num' => $num]);
+}

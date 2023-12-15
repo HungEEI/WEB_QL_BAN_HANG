@@ -21,24 +21,29 @@ $result = data_tree($list_cat);
                         <div class="form-group">
                             <label for="name">Tên sản phẩm</label>
                             <input class="form-control" type="text" name="product-name" id="name">
+                            <?php echo form_error('product-name') ?>
                         </div>
                         <div class="form-group">
                             <label for="name">Slug</label>
                             <input class="form-control" type="text" name="product-slug" id="name">
+                            <?php echo form_error('product-slug') ?>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="name">Số lượng kho</label>
                             <input class="form-control" type="number" name="product-qty" id="name">
+                            <?php echo form_error('product-qty') ?>
                         </div>
                         <div class="form-group">
                             <label for="name">Giá</label>
                             <input class="form-control" type="number" name="product-price" id="name">
+                            <?php echo form_error('product-price') ?>
                         </div>
                         <div class="form-group">
                             <label for="name">Giá khuyến mại</label>
                             <input class="form-control" type="number" name="product-discount" id="name">
+                            <?php echo form_error('product-discount') ?>
                         </div>                     
                     </div>                
                 </div>
@@ -46,11 +51,13 @@ $result = data_tree($list_cat);
                     <div class="form-group col-6">
                         <label for="intro">Mô tả sản phẩm</label>
                         <textarea name="product-desc" class="ckeditor" id="content"></textarea>
+                        <?php echo form_error('product-desc') ?>
                     </div>
     
                     <div class="form-group col-6">
                         <label for="intro">Chi tiết sản phẩm</label>
                         <textarea name="product-detail" class="ckeditor" id="content"></textarea>
+                        <?php echo form_error('product-detail') ?>
                     </div>
                 </div>
                 <div class="form-group">

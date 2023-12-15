@@ -3,10 +3,11 @@ get_header();
 ?>
 
 <?php
-$cat_name_mobile = get_category_name_by_id(3);
-$cat_name_laptop = get_category_name_by_id(18);
-$cat_name_earphone = get_category_name_by_id(19);
-$cat_name_screen = get_category_name_by_id(31);
+$cat_name_mobile = get_category_name_by_id(18);
+$cat_name_laptop = get_category_name_by_id(19);
+$cat_name_earphone = get_category_name_by_id(21);
+$cat_name_screen = get_category_name_by_id(20);
+$cat_watch = get_category_name_by_id(22);
 $info_sliders = get_info_sliders();
 ?>
 
@@ -90,7 +91,7 @@ $info_sliders = get_info_sliders();
                             </div>
                         </div>
                    </div>
-                    <a class="xemall" href="#" title="Xem tất cả">
+                    <a class="xemall" href="san-pham/tat-ca-san-pham.html" title="Xem tất cả">
                         Xem tất cả 
                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="svg-inline--fa fa-chevron-right fa-w-8"><path fill="currentColor" d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z" class=""></path></svg>
                     </a>
@@ -146,7 +147,7 @@ $info_sliders = get_info_sliders();
                 <div class="section-detail">
                     <ul class="list-item clearfix"> 
                         <?php
-                        foreach(get_all_products_by_category(3) as $product) {
+                        foreach(get_all_products_by_category(18) as $product) {
                             if($product['status'] == 'active') {
                                 ?>
                                 <li>
@@ -188,7 +189,7 @@ $info_sliders = get_info_sliders();
             <div class="section-detail">
                 <ul class="list-item clearfix">
                     <?php
-                        foreach(get_all_products_by_category(18) as $product) {
+                        foreach(get_all_products_by_category(19) as $product) {
                             if($product['status'] == 'active') {
 
                                 ?>
@@ -230,7 +231,7 @@ $info_sliders = get_info_sliders();
             <div class="section-detail">
                 <ul class="list-item clearfix">
                     <?php
-                    foreach(get_all_products_by_category(19) as $product) {
+                    foreach(get_all_products_by_category(21) as $product) {
                         if($product['status'] == 'active') {
                             ?>
                             <li>
@@ -271,7 +272,42 @@ $info_sliders = get_info_sliders();
             <div class="section-detail">
                 <ul class="list-item clearfix">
                     <?php
-                    foreach(get_all_products_by_category(31) as $product) {
+                    foreach(get_all_products_by_category(20) as $product) {
+                        if($product['status'] == 'active') {
+                            ?>
+                            <li>
+                                <a href="<?php echo $product['url'] ?>" title="" class="thumb">
+                                    <img src="../admin/<?php echo $product['thumb'][0] ?>">
+                                </a>
+                                <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
+                                <div class="price">
+                                    <span class="new"><?php echo currency_format($product['product_price']) ?></span>
+                                    <span class="old"><?php echo currency_format($product['product_discount']) ?></span>
+                                </div>
+                                <div class="action clearfix">
+                                    <a href="<?php echo $product['url_cart'] ?>" title="Thêm giỏ hàng" class="add-cart fl-left">Thêm giỏ hàng</a>
+                                    <a href="<?php echo $product['url_checkout'] ?>" title="Mua ngay" class="buy-now fl-right">Mua ngay</a>
+                                </div>
+                            </li>                       
+                            <?php
+                        }
+                    }
+                    ?>                   
+                </ul>
+            </div>
+        </div>
+        <div class="section  container" id="list-product-wp">
+            <div class="section-head">
+                <h3 class="section-title h3-cat">
+                    <a href="" class="a-cat">
+                        <?php echo $cat_watch['category_name'] ?>
+                    </a>
+                </h3>
+            </div>
+            <div class="section-detail">
+                <ul class="list-item clearfix">
+                    <?php
+                    foreach(get_all_products_by_category(22) as $product) {
                         if($product['status'] == 'active') {
                             ?>
                             <li>

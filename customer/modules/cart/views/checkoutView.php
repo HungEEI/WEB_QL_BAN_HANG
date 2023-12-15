@@ -110,6 +110,7 @@ $num_order = get_num_oder_cart();
                         </tr>
                     </tfoot>
                 </table>
+                <?php echo form_error('order') ?>
             </div>
             </div>
         </div>
