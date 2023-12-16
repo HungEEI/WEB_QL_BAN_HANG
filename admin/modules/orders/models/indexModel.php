@@ -74,5 +74,8 @@ function get_status($status = "") {
     return $list;
 }
 
-
-
+// Lấy tổng tiền đơn hàng đã hoàn thành
+function get_total_price() {
+    $total = db_fetch_array("SELECT orders.total_amount FROM `orders` WHERE status = 'delivered'");
+    return $total;
+}

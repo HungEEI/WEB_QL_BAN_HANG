@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# ĐĂNG NHẬP
+RewriteRule ^([a-zA-Z0-9_-]+).html$ ?mod=users&action=login
+
+

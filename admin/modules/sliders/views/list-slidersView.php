@@ -32,15 +32,14 @@ $start = ($page - 1) * $num_per_page;
         </div>
         <div class="card-body">
             <div class="analytic">
-                <a href="" class="text-primary">Trạng thái 1<span class="text-muted">(10)</span></a>
-                <a href="" class="text-primary">Trạng thái 2<span class="text-muted">(5)</span></a>
-                <a href="" class="text-primary">Trạng thái 3<span class="text-muted">(20)</span></a>
+                <a href="" class="text-primary">Công khai<span class="text-muted">(10)</span></a>
+                <a href="" class="text-primary">Ẩn<span class="text-muted">(5)</span></a>           
             </div>
             <div class="form-action form-inline py-3">
                 <select class="form-control mr-1" id="">
                     <option>Chọn</option>
-                    <option>Tác vụ 1</option>
-                    <option>Tác vụ 2</option>
+                    <option>Công khai</option>
+                    <option>Ẩn</option>
                 </select>
                 <input type="submit" name="btn-search" value="Áp dụng" class="btn btn-primary">
             </div>
@@ -55,6 +54,7 @@ $start = ($page - 1) * $num_per_page;
                             <th scope="col">Tên sliser</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Người tạo</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Tác vụ</th>
                         </tr>
@@ -75,9 +75,21 @@ $start = ($page - 1) * $num_per_page;
                                 <td><a href=""><?php echo $slider[$i]['slider_name'] ?></a></td>
                                 <td><a href=""><?php echo $slider[$i]['slider_slug'] ?></a></td>
                                 <td><a href=""><?php echo $slider[$i]['fullname'] ?></a></td>
+                                <?php
+                                    if($slider[$i]['status'] == 'active') {
+                                        ?>
+                                        <td><span class="badge badge-success">Công khai</span></td>
+                                        <?php
+                                    }else {
+                                        ?>
+                                        <td><span class="badge badge-warning">Ẩn</span></td>
+                                        <?php
+                                    }
+                                    ?>
                                 <td><?php echo $slider[$i]['created_at'] ?></td>                     
                 
-                                <td><button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                <td>
+                                    <a href="?mod=sliders&controller=index&action=update&id=<?php echo $slider[$i]['slider_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     <a onclick="return Del('<?php echo $slider[$i]['slider_name'] ?>')" href="?mod=sliders&controller=index&action=delete&id=<?php echo $slider[$i]['slider_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>  

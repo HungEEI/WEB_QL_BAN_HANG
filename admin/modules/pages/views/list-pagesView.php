@@ -44,12 +44,12 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                             </th>
                             <th scope="col">#</th>
                             <th scope="col">Tên trang</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Nội dung trang</th>
+                            <!-- <th scope="col">Slug</th> -->
+                            <!-- <th scope="col">Nội dung trang</th> -->
                             <th scope="col">Người tạo</th>
                             <th scope="col">Trạng thái</th>
-                            <!-- <th scope="col">Ngày tạo</th>
-                            <th scope="col">Ngày cập nhật</th> -->
+                            <th scope="col">Ngày tạo</th>
+                            <!-- <th scope="col">Ngày cập nhật</th> -->
                             <th scope="col">Tác vụ</th>
                         </tr>
                     </thead>
@@ -65,8 +65,8 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                                 </td>
                                 <td scope="row"><?php echo $temp ?></td>
                                 <td><a href=""><?php echo $page['page_title'] ?></a></td>
-                                <td><a href=""><?php echo $page['page_slug'] ?></a></td>
-                                <td><a href=""><?php echo $page['page_content'] ?></a></td>
+                                <!-- <td><a href=""><?php echo $page['page_slug'] ?></a></td> -->
+                                <!-- <td><a href=""><?php echo $page['page_content'] ?></a></td> -->
                                 <td><a href=""><?php echo $page['fullname'] ?></a></td>
                                 <?php
                                 if($page['status'] == 'active') {
@@ -79,8 +79,8 @@ FROM `pages` INNER JOIN `users` ON pages.user_id = users.user_id");
                                     <?php
                                 }
                                 ?>
-                                <!-- <td><?php echo $page['created_at'] ?></td>                     
-                                <td><?php echo $page['updated_at'] ?></td>                      -->
+                                <td><?php echo $page['created_at'] ?></td>                     
+                                <!-- <td><?php echo $page['updated_at'] ?></td>                      -->
                                 <td><a href="?mod=pages&action=update&id=<?php echo $page['page_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     <a onclick="return Del('<?php echo $page['page_title'] ?>')" href="?mod=pages&action=delete&id=<?php echo $page['page_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                 </td>

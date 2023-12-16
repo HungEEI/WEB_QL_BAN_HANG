@@ -16,6 +16,12 @@ $total_row = $num_row;
 $num_page = ceil($total_row / $num_per_page);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $num_per_page;
+
+$total = get_total_price();
+$grandTotal = 0;                           
+foreach ($total as $g) {
+$grandTotal += $g['total_amount'];
+}
 ?>
 <div id="wp-content" class="container-fluid">
     <div class="card">
@@ -38,6 +44,20 @@ $start = ($page - 1) * $num_per_page;
                 <a href="" class="text-primary">Đã vận chuyển<span class="text-muted">(<?php echo count(get_status('shipped')) ?>)</span></a>
                 <a href="" class="text-primary">Đã giao hàng<span class="text-muted">(<?php echo count(get_status('delivered')) ?>)</span></a>
                 <a href="" class="text-primary">Đã hủy<span class="text-muted">(<?php echo count(get_status('canceled')) ?>)</span></a>
+                <a class="text-primary">Doanh số: <strong><?php echo formatCurrency($grandTotal) ?></strong></a>
+                <?php
+                    function formatCurrency($amount) {
+                        if ($amount >= 1000000000) {
+                            // Tỷ
+                            $formattedAmount = number_format($amount / 1000000000, 1) . ' tỷ';
+                        } else {
+                            // Triệu
+                            $formattedAmount = number_format($amount / 1000000, 1) . ' triệu';
+                        }
+
+                        return $formattedAmount;
+                    }
+                ?>
             </div>          
                 <table class="table table-striped table-checkall mt-4">
                     <thead>
@@ -95,14 +115,14 @@ $start = ($page - 1) * $num_per_page;
                                                     break;
                                                 case 'shipped':
                                                     ?>
-                                                    <span class="badge bg-success text-white">
+                                                    <span class="badge bg-primary text-white">
                                                         Đã vận chuyển
                                                     </span>
                                                     <?php
                                                     break;
                                                 case 'delivered':
                                                     ?>
-                                                    <span class="badge bg-primary text-white">
+                                                    <span class="badge bg-success text-white">
                                                         Đã giao hàng
                                                     </span>
                                                     <?php

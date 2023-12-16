@@ -111,3 +111,28 @@ function updateAction() {
         load_view('update-post');
     }
 }
+
+function searchAction() {
+    $list = get_info_list_post();
+    $results = [];
+    $num = 0;
+
+    if(isset($_GET['btn-search'])) {
+        $search = $_GET['search'];
+        if(empty($search)) {
+            echo "Yêu cầu nhập lại";
+        }else {
+            $sql = "SELECT posts.*, post_categories.category_name, users.fullname, images.image_url
+            FROM `posts` 
+            JOIN `users` ON posts.user_id = users.user_id
+            JOIN `images` ON posts.image_id = images.image_id
+            JOIN `post_categories` ON posts.post_category_id = post_categories.post_category_id
+            WHERE CONCAT(post_id, post_title) LIKE '%" . $search . "%'
+            ORDER BY posts.post_id DESC
+            ";
+            $results = db_fetch_array($sql);      
+            $num = count($results);
+        }
+    }
+    load_view('list-post', ['list_post' => $list, 'results' => $results, 'num' => $num]);
+}

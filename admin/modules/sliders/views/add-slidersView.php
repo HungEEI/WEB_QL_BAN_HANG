@@ -18,7 +18,22 @@ get_sidebar();
                 <div class="form-group">
                     <label for="page_slug">Slug</label>
                     <input class="form-control" type="text" name="slider-slug" id="name">
-                </div>                                                    
+                </div>      
+                <div class="form-group">
+                    <label for="">Trạng thái</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="active" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Công khai
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="inactive">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Chờ duyệt
+                        </label>
+                    </div>
+                </div>                                              
                 <div class="form-group clearfix">                 
                     <label for="detail">Hình ảnh</label><br>
                     <input type="file" name="file" id="file" data-uri="?mod=image&controller=upload&action=upload">

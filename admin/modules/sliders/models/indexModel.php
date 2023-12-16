@@ -9,4 +9,14 @@ function get_slider() {
     return $slider;
 }
 
+// Lấy sản phẩm theo id
+function get_slider_by_id() {
+    $id = $_GET['id'];
+    $slider = db_fetch_row("SELECT sliders.*
+    FROM `sliders` 
+    WHERE `slider_id` = $id");
+
+    return $slider;
+}
+
 ?>

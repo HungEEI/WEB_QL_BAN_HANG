@@ -12,12 +12,14 @@ function addAction() {
         $slider_name = $_POST['slider-name'];
         $slider_slug = $_POST['slider-slug'];
         $image_id = $_POST['image_id'];
+        $status = isset($_POST['status']) ? $_POST['status'] : 'active'; 
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $data = [
             'user_id' => $user_id['user_id'],
             'image_id' => $image_id,
             'slider_name' => $slider_name,
             'slider_slug' => $slider_slug,
+            'status' => $status,
             'created_at' => date('Y-m-d H:i:s'),
         ];
 
@@ -53,4 +55,28 @@ function deleteAction() {
     redirect("?mod=sliders&controller=index&action=list");
 }
 
+function updateAction() {
+    $id = $_GET['id'];
+    $user_id = db_fetch_row("SELECT * FROM `users`");
+    if(isset($_POST['btn-add-slider'])) {
+        $error = array();
+        $slider_name = $_POST['slider-name'];
+        $slider_slug = $_POST['slider-slug'];
+        // $image_id = $_POST['image_id'];
+        $status = isset($_POST['status']) ? $_POST['status'] : 'active'; 
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $data = [
+            'user_id' => $user_id['user_id'],
+            // 'image_id' => $image_id,
+            'slider_name' => $slider_name,
+            'slider_slug' => $slider_slug,
+            'status' => $status,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
 
+        db_update('sliders', $data, "slider_id = $id");
+        load_view('list-sliders');
+    }else {
+        load_view('update');
+    }
+}

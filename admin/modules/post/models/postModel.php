@@ -19,4 +19,10 @@ function get_post_by_id() {
     return $post;
 }
 
+// Lấy trạng thái post 
+function get_status_post($status = "") {
+    $list = db_fetch_array("SELECT posts.status FROM `posts` WHERE posts.status = '$status'");
+    return $list;
+}
+
 ?>
