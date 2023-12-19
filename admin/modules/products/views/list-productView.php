@@ -57,7 +57,7 @@ $start = ($page - 1) * $num_per_page;
                             <th scope="col">Giá</th>
                             <th scope="col">Danh mục</th>
                             <th scope="col">Tình trạng</th>
-                            <th scope="col">Người tạo</th>
+                            <th scope="col">Người tạo-Ngày tạo</th>
                             <th scope="col">Trạng thái</th>
                             <!-- <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhật</th> -->
@@ -96,7 +96,10 @@ $start = ($page - 1) * $num_per_page;
                                         <?php
                                     }
                                     ?>
-                                    <td><?php echo $product['fullname'] ?></td>
+                                    <td style="text-align: center;">
+                                        <?php echo $product['fullname'] ?> <br>
+                                        <?php echo $product['created_at'] ?>
+                                    </td>
                                     <?php
                                     if($product['status'] == 'active') {
                                         ?>
@@ -146,7 +149,10 @@ $start = ($page - 1) * $num_per_page;
                                         <?php
                                     }
                                     ?>
-                                    <td><?php echo $product[$i]['fullname'] ?></td>
+                                    <td style="text-align: center;">
+                                        <?php echo $product[$i]['fullname'] ?><br>
+                                        <?php echo $product[$i]['created_at'] ?>
+                                    </td>
                                     <?php
                                     if($product[$i]['status'] == 'active') {
                                         ?>

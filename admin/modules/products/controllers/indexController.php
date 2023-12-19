@@ -209,6 +209,4 @@ function searchAction() {
     }
     load_view('list-product', ['list_product' => $list, 'results' => $results, 'num' => $num]);
 }
-
-
 ?>

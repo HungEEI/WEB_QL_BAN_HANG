@@ -60,8 +60,7 @@ $start = ($page - 1) * $num_per_page;
                                 <!-- <th scope="col">Mô tả ngắn</th> -->
                                 <!-- <th scope="col">Nội dung</th> -->
                                 <th scope="col">Trạng thái</th>
-                                <th scope="col">Người tạo</th>
-                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Người tạo-Ngày tạo</th>
                                 <th scope="col">Tác vụ</th>
                             </tr>
                         </thead>
@@ -93,8 +92,10 @@ $start = ($page - 1) * $num_per_page;
                                             <?php
                                         }
                                         ?>
-                                        <td><?php echo $post['fullname'] ?></td></td>
-                                        <td><?php echo $post['created_at'] ?></td>
+                                        <td>
+                                            <?php echo $post['fullname'] ?> <br>
+                                            <?php echo $post['created_at'] ?>
+                                        </td>
                                         <td>
                                             <a href="?mod=post&controller=index&action=update&id=<?php echo $post['post_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                             <a onclick="return Del('<?php echo $post['post_title'] ?>')" href="?mod=post&controller=index&action=delete&id=<?php echo $post['post_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button"
@@ -130,8 +131,10 @@ $start = ($page - 1) * $num_per_page;
                                             <?php
                                         }
                                          ?>
-                                        <td><?php echo $post[$i]['fullname'] ?></td></td>
-                                        <td><?php echo $post[$i]['created_at'] ?></td>
+                                        <td>
+                                            <?php echo $post[$i]['fullname'] ?> <br>
+                                            <?php echo $post[$i]['created_at'] ?>
+                                        </td>
                                         <td>
                                             <a href="?mod=post&controller=index&action=update&id=<?php echo $post[$i]['post_id'] ?>" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                             <a onclick="return Del('<?php echo $post[$i]['post_title'] ?>')" href="?mod=post&controller=index&action=delete&id=<?php echo $post[$i]['post_id'] ?>" class="btn btn-danger btn-sm rounded-0" type="button"

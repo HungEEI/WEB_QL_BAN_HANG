@@ -54,9 +54,12 @@
                             <div class="header-right">
                                 <a href="trang-chu.html" title="" id="logo"><img class="" src="public/images/logo.png"/></a>
                                 <div id="search-wp">
-                                    <form method="POST" action="">
+                                    <form method="GET" action="?mod=products&controller=index&action=searchmain">
                                         <input type="text" name="s" id="s" placeholder="Nhập từ khóa tìm kiếm tại đây!">                               
-                                        <button type="submit" id="sm-s">Tìm kiếm</button>
+                                        <button type="submit" name="btn-smain" id="sm-s">Tìm kiếm</button>
+                                        <input type="hidden" name="mod" value="products">
+                                        <input type="hidden" name="controller" value="index">
+                                        <input type="hidden" name="action" value="searchmain">
                                     </form>
                                 </div>
                             </div>
@@ -77,7 +80,14 @@
                                             <span id="num"><?php echo get_num_oder_cart() ?></span>
                                         </div>
                                         <div id="dropdown">
-                                            <p class="desc">Có <span><?php echo get_num_oder_cart() ?> sản phẩm</span> trong giỏ hàng</p>
+                                            <p class="desc">Có <span><?php 
+                                            if (get_num_oder_cart() == 0) {
+                                                echo '0';
+                                            } else {
+                                                echo get_num_oder_cart();
+                                            }
+                                            ?> sản phẩm</span> trong giỏ hàng</p>
+                                        
                                             <ul class="list-cart">
                                                 <?php                                             
                                                 foreach(get_list_by_cart() as $item) {

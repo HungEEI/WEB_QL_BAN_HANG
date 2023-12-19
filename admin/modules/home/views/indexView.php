@@ -17,7 +17,7 @@ $grandTotal += $g['total_amount'];
 <div id="wp-content">
     <div class="container-fluid py-5">
         <div class="row">                 
-            <div class="col-4">
+            <div class="col-3">
                 <div class="card text-white bg-danger mb-3" style="max-width: 24rem;">
                     <div class="card-header">ĐANG CHỜ XỬ LÝ</div>
                     <div class="card-body">
@@ -30,7 +30,7 @@ $grandTotal += $g['total_amount'];
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <div class="card text-white bg-secondary mb-3" style="max-width: 24rem;">
                     <div class="card-header">ĐANG XỬ LÝ</div>
                     <div class="card-body">
@@ -43,7 +43,7 @@ $grandTotal += $g['total_amount'];
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <div class="card text-white bg-info mb-3" style="max-width: 24rem;">
                     <div class="card-header">ĐÃ VẬN CHUYỂN</div>
                     <div class="card-body">
@@ -56,8 +56,8 @@ $grandTotal += $g['total_amount'];
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="card text-white bg-primary mb-3" style="max-width: 24rem;">
+            <div class="col-3">
+                <div class="card text-white bg-success mb-3" style="max-width: 24rem;">
                     <div class="card-header">ĐƠN HÀNG THÀNH CÔNG</div>
                     <div class="card-body">
                         <h5 class="card-title">
@@ -69,8 +69,8 @@ $grandTotal += $g['total_amount'];
                     </div>
                 </div>
             </div>   
-            <div class="col-4">
-                <div class="card text-white bg-success mb-3" style="max-width: 24rem;">
+            <div class="col-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 24rem;">
                     <div class="card-header">DOANH SỐ</div>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo formatCurrency($grandTotal) ?></h5>
@@ -92,7 +92,7 @@ $grandTotal += $g['total_amount'];
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
                     <div class="card-header">ĐƠN HÀNG HỦY</div>
                     <div class="card-body">
@@ -102,6 +102,19 @@ $grandTotal += $g['total_amount'];
                             ?>
                         </h5>
                         <p class="card-text">Số đơn bị hủy trong hệ thống</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card text-dark mb-3" style="max-width: 24rem;">
+                    <div class="card-header">TỔNG SẢN PHẨM TRONG KHO</div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <?php
+                                echo get_total_qty();
+                            ?>
+                        </h5>
+                        <p class="card-text">Số lượng sản phẩm trong kho</p>
                     </div>
                 </div>
             </div>
@@ -115,14 +128,14 @@ $grandTotal += $g['total_amount'];
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col-4">#</th>
-                                <th scope="col-4">Mã đơn</th>
-                                <th scope="col-4">Khách hàng</th>
-                                <th scope="col-4">Số lượng</th>
-                                <th scope="col-4">Thành tiền</th>
-                                <th scope="col-4">Trạng thái</th>
-                                <th scope="col-4">Thời gian</th>
-                                <th scope="col-4">Tác vụ</th>
+                                <th scope="col-3">#</th>
+                                <th scope="col-3">Mã đơn</th>
+                                <th scope="col-3">Số lượng</th>
+                                <th scope="col-3">Khách hàng</th>
+                                <th scope="col-3">Thành tiền</th>
+                                <th scope="col-3">Trạng thái</th>
+                                <th scope="col-3">Ngày đặt hàng</th>
+                                <th scope="col-3">Tác vụ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,13 +147,15 @@ $grandTotal += $g['total_amount'];
                                 <tr>
                                     <th scope="row"><?php echo $t ?></th>
                                     <td><?php echo $p['order_code'] ?></td>
+                                    <td><?php echo $p['product_quantity'] ?></td>
                                     <td>                                       
                                         <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $p['order_id'] ?>">
                                             <?php echo $p['fullname'] ?><br>
+                                        </a>
+                                        <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $p['order_id'] ?>">
                                             0<?php echo $p['phone'] ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $p['product_quantity'] ?></td>
                                     <td><?php echo currency_format($p['total_amount']) ?></td>
                                     <td>
                                     <?php

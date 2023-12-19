@@ -3,8 +3,7 @@ get_header();
 ?>
 
 <?php
-$all_products = get_all_products();
-$num_row = count($all_products);
+$num_row = count($results);
 // Số lượng bản ghi trên trang
 $num_per_page = 8;
 //Tổng số bản ghi
@@ -13,8 +12,6 @@ $total_row = $num_row;
 $num_page = ceil($total_row / $num_per_page);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $num_per_page;
-
-$current_page_products = array_slice($all_products, $start, $num_per_page);
 ?>
 
 <div id="main-content-wp" class="clearfix category-product-page">
@@ -26,7 +23,7 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                         <a href="?" title="">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="" title="">Tất cả sản phẩm</a>
+                        <a href="" title="">Kết quả tìm kiếm</a>
                     </li>
                 </ul>
             </div>
@@ -34,9 +31,9 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
         <div class="main-content fl-right">
             <div class="section" id="list-product-wp">
                 <div class="section-head clearfix">
-                    <h3 class="section-title fl-left">Tất cả sản phẩm</h3>
+                    <h3 class="section-title fl-left">Kết quả tìm kiếm</h3>
                     <div class="filter-wp fl-right">
-                        <p class="desc">Hiển thị <?php echo $num_per_page ?> trên <?php echo count(get_all_products()) ?> sản phẩm</p>
+                        <p class="desc">Tìm được <?php echo $num_row ?> sản phẩm </p>
                         <div class="form-filter">
                             <form method="POST" action="">
                                 <select name="select">
@@ -55,13 +52,13 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                     <ul class="list-item clearfix">
                         <?php 
                         $temp = 0;
-                        foreach($current_page_products as $product) {
+                        foreach($results as $product) {
                             if($product['status'] == 'active') {
                                 $temp++;
                                 ?>
                                 <li class="col-4">
                                     <a href="<?php echo $product['url'] ?>" title="" class="thumb">
-                                        <img src="admin/<?php echo $product['thumb'][0] ?>">
+                                        <img src="admin/<?php echo $product['thumb'][0]['image_url'] ?>">
                                     </a>
                                     <a href="<?php echo $product['url'] ?>" title="" class="product-name"><?php echo $product['product_name'] ?></a>
                                     <div class="price">
@@ -81,11 +78,6 @@ $current_page_products = array_slice($all_products, $start, $num_per_page);
                     </ul>
                 </div>
             </div>
-            <?php
-            if($num_page >= 2) {
-                echo get_pagging($num_page, $page, $base_url = "?mod=products&controller=index&action=all");
-            }
-            ?>
         </div>
         <?php get_sidebar('product') ?>
     </div>

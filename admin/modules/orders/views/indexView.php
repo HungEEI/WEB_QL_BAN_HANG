@@ -70,7 +70,7 @@ $grandTotal += $g['total_amount'];
                             <th scope="col">Khách hàng</th>
                             <th scope="col">Tổng tiền</th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col">Thời gian</th>
+                            <th scope="col">Ngày đặt hàng</th>
                             <th scope="col">Tác vụ</th>
                         </tr>
                     </thead>
@@ -161,6 +161,8 @@ $grandTotal += $g['total_amount'];
                                     <td>
                                         <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $item[$i]['order_id'] ?>">
                                             <?php echo $item[$i]['fullname'] ?><br>
+                                        </a>
+                                        <a class="a_blue" href="?mod=orders&controller=index&action=detail&id=<?php echo $item[$i]['order_id'] ?>">
                                             0<?php echo $item[$i]['phone'] ?>
                                         </a>
                                     </td>
@@ -184,14 +186,14 @@ $grandTotal += $g['total_amount'];
                                                     break;
                                                 case 'shipped':
                                                     ?>
-                                                    <span class="badge bg-success text-white">
+                                                    <span class="badge bg-primary text-white">
                                                         Đã vận chuyển
                                                     </span>
                                                     <?php
                                                     break;
                                                 case 'delivered':
                                                     ?>
-                                                    <span class="badge bg-primary text-white">
+                                                    <span class="badge bg-success text-white">
                                                         Đã giao hàng
                                                     </span>
                                                     <?php
