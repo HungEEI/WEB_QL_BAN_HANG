@@ -23,11 +23,11 @@ function is_email($email){
     return true;
 }
 
-# Thông báo lỗi
-function form_error($label_field) {
-    global $error;
-    if(!empty($error[$label_field])) return "<p class='error'>{$error[$label_field]}</p>";      
-}
+// # Thông báo lỗi
+// function form_error($label_field) {
+//     global $error;
+//     if(!empty($error[$label_field])) return "<p class='error'>{$error[$label_field]}</p>";      
+// }
 
 # Hiển thị đã nhập
 function set_value($label_field) {

@@ -48,7 +48,7 @@ function addAction() {
         }else {
             $email = $_POST['email'];
         }
-
+        $level = isset($_POST['level']) ? $_POST['level'] : 'admin';
         if(empty($error)) {
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $data = [
@@ -56,6 +56,7 @@ function addAction() {
                 'username' => $username,
                 'password' => $password,
                 'email' => $email,
+                'level' => $level,
                 'created_at' => date('Y-m-d H:i:s')
             ];
             db_insert('users', $data);
@@ -91,16 +92,21 @@ function loginAction()
             }
         }
 
+        $level = db_fetch_row("SELECT users.level FROM `users` WHERE users.username = '{$username}'");
         # Kết luận
         if (empty($error)) {
-            if (check_login($username, $password)) {
-                // Lưu trữ phiên đăng nhập
-                $_SESSION['is_login'] = true;
-                $_SESSION['user_login'] = $username;
-                // Chuyển hướng vào trong hệ thống
-                redirect();
-            } else {
-                $error['account'] = "Tên đăng nhập hoặc mật khẩu không tồn tại";
+            if($level['level'] == 'admin') {
+                if (check_login($username, $password)) {
+                    // Lưu trữ phiên đăng nhập
+                    $_SESSION['is_login'] = true;
+                    $_SESSION['user_login'] = $username;
+                    // Chuyển hướng vào trong hệ thống
+                    redirect();
+                } else {
+                    $error['account'] = "Tên đăng nhập hoặc mật khẩu không tồn tại";
+                }
+            }else {
+                $error['account'] = "Không thể đăng nhập";
             }
         }
     }
@@ -180,52 +186,58 @@ function resetOkAction()
     load_view('resetOk');
 }
 
-function updateAction()
-{
-    /* Cập nhật tài khoản
-        * B1: Tạo giao diện
-        * B2: Load lại thông tin cũ
-        * B3: Validation form
-        * B4: Cập nhật thông tin
-    */
+function updateAction() {
+    $id = $_GET['id'];
     if (isset($_POST['btn-update'])) {
-        global $error, $fullname, $phone_number, $address;
+        global $error;
         $error = array();
 
-        # Username
+        # Fullname
         if (empty($_POST['fullname'])) {
             $error['fullname'] = "Không để trống họ tên";
         } else {
             $fullname = $_POST['fullname'];
         }
 
+         # Username
+         if (empty($_POST['username'])) {
+            $error['username'] = "Không để trống trên đăng nhập";
+        } else {
+            $username = $_POST['username'];
+        }
+
+         # Password
+         if (empty($_POST['password'])) {
+            $error['password'] = "Không để trống mật khẩu";
+        } else {
+            if (!is_password($_POST['password'])) {
+                $error['password'] = "Mật khẩu không đúng định dạng";
+            } else {
+                $password = md5($_POST['password']);
+            }
+        }
+
         # Email
-        if (empty($_POST['phone_number'])) {
-            $error['phone_number'] = "Không để trống số điện thoại";
+        if (empty($_POST['email'])) {
+            $error['email'] = "Hãy nhập email";
         } else {
-            $phone_number = $_POST['phone_number'];
+            $email = $_POST['email'];
         }
-
-        # Address
-        if (empty($_POST['address'])) {
-            $error['address'] = "Không để trống địa chỉ";
-        } else {
-            $address = $_POST['address'];
-        }
-
+        $level = isset($_POST['level']) ? $_POST['level'] : 'admin';
         if (empty($error)) {
             # Update
             $data = array(
                 'fullname' => $fullname,
-                'phone_number' => $phone_number,
-                'address' => $address
+                'username' => $username,
+                'password' => $password,
+                'email' => $email,
+                'level' => $level,
             );
-            update_user_login(user_login(), $data);
+            db_update('users', $data, "user_id = $id");
+            redirect('?mod=users&action=list');
         }
     }
-    $info_user = get_user_by_username(user_login());
-    $data['info_user'] = $info_user;
-    load_view('update', $data);
+    load_view('update');
 }
 
 function deleteAction() {

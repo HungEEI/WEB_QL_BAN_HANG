@@ -96,3 +96,9 @@
 #action-cart-wp #buy-more{ margin-bottom: 5px;}
 #info-cart-wp table tfoot tr td{ padding: 0px;}
 .table>tbody>tr>th, .table>tbody>tr>td{ border-bottom: 1px solid #ddd;}
+a.path {
+    background: rgb(20, 53, 195); padding: 10px; color: #fff; border-radius: 6px;
+}
+a.path:hover {
+    background: rgb(10, 28, 116);
+}

@@ -32,7 +32,21 @@ get_sidebar();
                     <input class="form-control" type="text" name="email" id="email">
                     <?php echo form_error('email'); ?>                    
                 </div>             
-
+                <div class="form-group">
+                    <label for="">Cấp</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="level" value="admin" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Admin
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="level" value="client">
+                        <label class="form-check-label" for="exampleRadios2">
+                            Client
+                        </label>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary" name="btn-add">Thêm mới</button>
             </form>
         </div>

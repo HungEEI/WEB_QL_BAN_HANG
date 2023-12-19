@@ -133,6 +133,10 @@
     #main-content-wp {
         padding: 25px 10px 75px 10px;
     }
+
+    #cart-wp #num, #cart-respon-wp #num {
+        right: -14px;      
+    }
 }
 
 @media screen and (max-width: 800px){
@@ -329,6 +333,9 @@
     }
     .section_flash_sale .wrap_time .time span {
         margin: 0px 5px !important;
+    }
+    #cart-wp #num, #cart-respon-wp #num {
+        right: -10px;      
     }
 }
 

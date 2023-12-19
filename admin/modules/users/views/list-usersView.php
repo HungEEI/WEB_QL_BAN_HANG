@@ -48,6 +48,7 @@ $start = ($page - 1) * $num_per_page;
                             <th scope="col">Họ tên</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Cấp</th>
                             <!-- <th scope="col">Password</th> -->
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Tác vụ</th>
@@ -68,10 +69,23 @@ $start = ($page - 1) * $num_per_page;
                                 <td><?php echo $user[$i]['fullname'] ?></td>
                                 <td><?php echo $user[$i]['username'] ?></td>
                                 <td><?php echo $user[$i]['email'] ?></td>
+                                <td>
+                                    <?php 
+                                    if($user[$i]['level'] == 'admin') {
+                                        ?>
+                                        Admin
+                                        <?php
+                                    }else {
+                                        ?>
+                                        Client
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
                                 <!-- <td><?php echo $user[$i]['password'] ?></td> -->
                                 <td><?php echo $user[$i]['created_at'] ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    <a href="?mod=users&controller=index&action=update&id=<?php echo $user[$i]['user_id']?>" class="btn btn-success btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                     <a onclick="return Del('<?php echo $user[$i]['username'] ?>')"  href="?mod=users&action=delete&id=<?php echo $user[$i]['user_id']?>" class="btn btn-danger btn-sm rounded-0 text-white" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>

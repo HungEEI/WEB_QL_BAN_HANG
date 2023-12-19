@@ -12,10 +12,13 @@ $info_product = get_info_product_by_id();
             <div class="secion-detail">
                 <ul class="list-item clearfix">
                     <li>
-                        <a href="?" title="">Trang chủ</a>
+                        <a href="trang-chu.html" title="">Trang chủ</a>
                     </li>
                     <li>
                         <a href="" title="">Điện thoại</a>
+                    </li>
+                    <li>
+                        <a href="#" title=""><?php echo $info_product['product_name'] ?></a>
                     </li>
                 </ul>
             </div>
@@ -25,14 +28,14 @@ $info_product = get_info_product_by_id();
                 <div class="section-detail clearfix">
                     <div class="thumb-wp fl-left">
                         <a href="<?php echo $info_product['url'] ?>" title="">
-                            <img src="admin/<?php echo $info_product['thumb'][0]; ?>" alt="<?php echo $info_product['product_name']; ?>">
+                            <img id="main-image" src="admin/<?php echo $info_product['thumb'][0]; ?>" alt="<?php echo $info_product['product_name']; ?>">
                         </a>
                         <div id="list-thumb">
                             <?php
                             foreach($info_product['thumb'] as $image) {
                                 ?>
-                                <a href="admin/<?php echo $image; ?>">
-                                    <img src="admin/<?php echo $image; ?>" />
+                                <a href="#" class="thumbnail-link">
+                                    <img src="admin/<?php echo $image; ?>" data-image="<?php echo $image; ?>" />
                                 </a>
                                 <?php
                             }
@@ -83,7 +86,7 @@ $info_product = get_info_product_by_id();
                 <div class="section-detail">
                     <ul class="list-item">
                         <?php                      
-                        foreach(get_product_related_by_id(3) as $p) {
+                        foreach(get_product_related_by_id(18) as $p) {
                             ?>
                             <li>
                                 <a href="<?php echo $p['url'] ?>" title="" class="thumb">
@@ -111,7 +114,26 @@ $info_product = get_info_product_by_id();
         ?>
     </div>
 </div>
+<!-- JavaScript để xử lý sự kiện khi click vào ảnh trong list-thumb -->
+<script>
+    $(document).ready(function() {
+        // Gán sự kiện click cho tất cả các thẻ có class là thumbnail-link
+        $('.thumbnail-link').on('click', function(e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
 
+            // Lấy nguồn ảnh từ thuộc tính data-image của thẻ img trong thẻ a
+            var imageUrl = $(this).find('img').data('image');
+
+            // Thay đổi nguồn ảnh của ảnh chính (main-image) với hiệu ứng transition
+            $('#main-image').css('opacity', 0);
+
+            // Thiết lập nguồn ảnh mới sau một khoảng thời gian ngắn để tạo hiệu ứng mượt mà
+            setTimeout(function() {
+                $('#main-image').attr('src', 'admin/' + imageUrl).css('opacity', 1);
+            }, 100);
+        });
+    });
+</script>
 <?php
 get_footer();
 ?>

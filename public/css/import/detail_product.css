@@ -52,6 +52,7 @@ img#zoom {
     display: inline-block;
     background: #ddd;
     padding: 0px 10px;
+    border-radius: 6px;
 }
 #detail-product-wp .info .price{
     font-size: 28px;
@@ -105,3 +106,7 @@ img#zoom {
     text-transform: uppercase;
 }
 #post-product-wp .section-detail p{ padding-bottom: 15px; color: #666; text-align: justify;}
+#main-image {
+    opacity: 1; 
+    transition: opacity 0.2s ease-in-out;
+}

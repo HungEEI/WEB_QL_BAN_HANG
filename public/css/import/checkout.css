@@ -47,7 +47,8 @@
     border: 1px solid #777;
 }
 #order-review-wp .shop-table{ width: 100%; text-align: left;}
-#order-review-wp .shop-table tr td:nth-child(2){ text-align: right;}
+#order-review-wp .shop-table tr td:nth-child(3){ text-align: right;}
+#order-review-wp .shop-table tr.order-total td:nth-child(2){ text-align: right;}
 #order-review-wp .shop-table thead tr{ border-bottom: 1px solid #ddd;}
 #order-review-wp .shop-table thead tr td{
     text-transform: uppercase;

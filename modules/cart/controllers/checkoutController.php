@@ -132,10 +132,11 @@ function orderAction() {
                     db_insert('order_items', $data_order_item);
                 }
                 redirect("?mod=cart&controller=checkout&action=success&id={$customer_id}"); 
-            }  
+            }else {
+                load_view('checkout');
+            }
         }else {
             $error['order'] = "Không có sản phẩm không thể đặt hàng";    
-            load_view('checkout');
         }
     }
 }

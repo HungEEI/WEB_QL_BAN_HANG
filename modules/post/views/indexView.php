@@ -67,6 +67,7 @@ $start = ($page - 1) * $num_per_page;
         <?php get_sidebar('best') ?>
     </div>
 </div>
+</div>
 
 <?php
 get_footer();

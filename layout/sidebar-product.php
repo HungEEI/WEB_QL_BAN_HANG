@@ -20,7 +20,7 @@ foreach ($list_cat as &$p) {
                     <h3 class="section-title">Bộ lọc</h3>
                 </div>
                 <div class="section-detail">
-                    <form method="POST" action="">
+                    <form method="GET" action="">
                         <table>
                             <thead>
                                 <tr>
@@ -49,8 +49,39 @@ foreach ($list_cat as &$p) {
                                     <td>Trên 10.000.000đ</td>
                                 </tr>
                             </tbody>
-                        </table>                    
+                        </table>                 
                     </form>
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Lắng nghe sự kiện thay đổi của các nút radio
+                let priceRadios = document.querySelectorAll('input[name="r-price"]');
+                priceRadios.forEach(function(radio) {
+                    radio.addEventListener('change', filterByPrice);
+                });
+            });
+
+            function filterByPrice() {
+                let selectedPrice = document.querySelector('input[name="r-price"]:checked');
+                
+                if (selectedPrice) {
+                    // Lấy giá trị của nút radio được chọn
+                    let priceValue = selectedPrice.value;
+
+                    console.log(priceValue);
+
+                    // Cập nhật URL với phạm vi giá đã chọn
+                    let queryParams = new URLSearchParams(window.location.search);
+                    queryParams.set("price", priceValue);
+                    window.history.replaceState(null, null, "?" + queryParams.toString());
+
+                    // Bạn có thể sử dụng AJAX để lấy và hiển thị sản phẩm dựa trên phạm vi giá đã chọn
+                    // Cập nhật HTML để hiển thị danh sách sản phẩm đã lọc được.
+                } else {
+                    // Xử lý trường hợp không có phạm vi giá nào được chọn
+                    console.log("Không có phạm vi giá nào được chọn");
+                }
+            }
+        </script>

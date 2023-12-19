@@ -21,3 +21,6 @@ RewriteRule ^gio-hang/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=index&action=i
 RewriteRule ^thanh-toan/([a-zA-Z0-9_-]+).html$ ?mod=cart&controller=checkout&action=index
 RewriteRule ^don-mua/([0-9]+)-thanh-toan.html$ ?mod=cart&controller=checkout&action=add&id=$1
 RewriteRule ^gio-hang-([0-9]+)/don-mua.html$ ?mod=cart&controller=index&action=add&id=$1
+#Clients
+RewriteRule ^chuc-nang/dang-nhap.html$ ?mod=clients&controller=client&action=login
+RewriteRule ^chuc-nang/dang-ky.html$ ?mod=clients&controller=client&action=register

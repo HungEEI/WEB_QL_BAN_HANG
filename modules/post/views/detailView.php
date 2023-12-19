@@ -47,6 +47,7 @@ $post = get_detail_post_by_id();
         <?php get_sidebar('best') ?>
     </div>
 </div>
+</div>
 
 <?php
 
